@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>CPP · Desafio 04–07/Mai — Análise Império + Plano</title>
-<meta name="description" content="Inteligência competitiva profunda do desafio Império Médico aplicada à execução do Desafio CPP de 4 dias (04 a 07 de maio): frameworks, cases, objeções, oferta e funil de comprometimento." />
+<title>Desafio Império Médico — material de estudo</title>
+<meta name="description" content="Resumo detalhado dos 4 dias do desafio Império Médico para estudo conjunto: o que eles fazem, como conduzem, quais técnicas aplicam, e quais melhores práticas podemos pegar." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -25,20 +25,19 @@
     --gold-3:#f7e3b3;
     --danger:#ef5a5a;
     --green:#3ddc84;
-    --blue:#6ea8ff;
   }
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
   body{background:
     radial-gradient(1200px 600px at 80% -10%, rgba(200,164,92,0.10), transparent 60%),
-    radial-gradient(900px 500px at -10% 20%, rgba(200,164,92,0.05), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(200,164,92,0.04), transparent 60%),
     var(--bg)}
   a{color:var(--gold-2);text-decoration:none}
   a:hover{text-decoration:underline}
-  .wrap{max-width:1180px;margin:0 auto;padding:48px 24px 96px}
+  .wrap{max-width:1100px;margin:0 auto;padding:48px 24px 96px}
 
   /* NAV */
   .nav{position:sticky;top:0;background:rgba(6,7,10,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:50;margin:-48px -24px 0;padding:14px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-  .nav-inner{max-width:1180px;margin:0 auto;display:flex;gap:16px;flex-wrap:wrap;align-items:center;color:var(--muted)}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center;color:var(--muted)}
   .nav a{color:var(--muted)}
   .nav a:hover{color:var(--gold-2);text-decoration:none}
   .nav .brand{color:var(--gold);font-weight:600;letter-spacing:.18em;font-family:'Cormorant Garamond',serif;font-size:16px;text-transform:none}
@@ -49,115 +48,81 @@
   .hero::after{content:"";position:absolute;left:0;bottom:-1px;width:120px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
-  .crest{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);letter-spacing:.4em;text-transform:uppercase;margin-bottom:-4px}
-  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,56px);line-height:1.04;letter-spacing:-.01em;margin:0;font-weight:600}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,52px);line-height:1.04;letter-spacing:-.01em;margin:0;font-weight:600}
   h1 em{font-style:italic;color:var(--gold-2);background:linear-gradient(180deg,var(--gold-3),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .subtitle{color:var(--muted);max-width:840px;font-size:17px}
+  .subtitle{color:var(--muted);max-width:820px;font-size:17px}
   .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
   .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line-2);border-radius:999px;background:var(--panel);color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}
   .chip strong{color:var(--text);font-weight:600}
-  .chip.gold{border-color:rgba(200,164,92,.35);background:linear-gradient(180deg,rgba(200,164,92,.10),rgba(200,164,92,0));color:var(--gold-3)}
-  .chip.gold strong{color:var(--gold-2)}
 
   /* SECTION */
   section{margin-top:72px;scroll-margin-top:80px}
   .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap}
-  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:-.01em;margin:0;font-weight:600}
+  .section-head h2{font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:-.01em;margin:0;font-weight:600}
   .section-head .num{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:13px;letter-spacing:.14em}
   .section-head .lede{color:var(--muted);font-size:14px;margin-left:auto;max-width:55%;text-align:right}
 
-  /* CPP HERO STATS */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
-  .stat{padding:18px 18px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,var(--panel),var(--bg-2));position:relative;overflow:hidden}
-  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-  .stat .l{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
-  .stat .v{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-2);font-weight:600;line-height:1.1;margin-top:6px}
-  .stat .v small{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-weight:500;display:block;margin-top:2px}
-
   /* TIMELINE TABLE */
   .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .day{position:relative;padding:22px;background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:12px;min-height:240px}
-  .day::before{content:"";position:absolute;inset:0;border-radius:14px;padding:1px;background:linear-gradient(180deg,rgba(200,164,92,0.4),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-  .day .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
-  .day .title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;line-height:1.2}
-  .day .by{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}
-  .day .role{margin-top:auto;color:var(--text);font-size:13px;border-top:1px dashed var(--line-2);padding-top:12px}
-  .day .role span{color:var(--muted);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+  .day-card{position:relative;padding:22px;background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:12px;min-height:240px}
+  .day-card::before{content:"";position:absolute;inset:0;border-radius:14px;padding:1px;background:linear-gradient(180deg,rgba(200,164,92,0.4),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+  .day-card .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+  .day-card .title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;line-height:1.2}
+  .day-card .by{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}
+  .day-card .role{margin-top:auto;color:var(--text);font-size:13px;border-top:1px dashed var(--line-2);padding-top:12px}
+  .day-card .role span{color:var(--muted);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
 
-  /* CPP DAYS - destaque */
-  .day.cpp{border-color:rgba(200,164,92,.35);background:linear-gradient(180deg,rgba(200,164,92,.05),var(--bg-2))}
-  .day.cpp .label{color:var(--gold-2)}
+  /* DAY DEEP — material de estudo (largo) */
+  .day{padding:32px;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:14px;margin-bottom:18px}
+  .day-header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:24px;flex-wrap:wrap;gap:14px}
+  .day-header .left h3{margin:0;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.1;letter-spacing:-.01em;font-weight:600}
+  .day-header .left .meta-line{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:12px;letter-spacing:.08em;margin-top:6px}
+  .day-header .right{text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
 
-  /* DAY DEEP DIVE */
-  .deep{display:grid;grid-template-columns:240px 1fr;gap:28px;padding:28px;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:14px;margin-bottom:18px}
-  .deep .left{display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line);padding-right:24px}
-  .deep .left .day-num{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:13px;letter-spacing:.15em}
-  .deep .left h3{margin:0;font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.15;letter-spacing:-.01em;font-weight:600}
-  .deep .left .who{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px}
-  .deep .left .stat-mini{display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px dashed var(--line-2)}
-  .deep .left .stat-mini span{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em}
-  .deep .left .stat-mini strong{font-size:14px;color:var(--text);font-weight:600}
-  .deep .right{display:flex;flex-direction:column;gap:18px}
-  .deep h4{margin:0 0 6px;font-size:13px;color:var(--gold-2);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-  .deep .arc{font-size:14.5px;color:var(--text)}
-  .deep .arc p{margin:0 0 10px}
-  .deep ul{margin:0;padding-left:20px;color:var(--text);font-size:14px}
-  .deep ul li{margin-bottom:6px}
-  .deep ul li b{color:var(--gold-2);font-weight:600}
+  .block{margin-bottom:22px}
+  .block:last-child{margin-bottom:0}
+  .block h4{margin:0 0 10px;font-size:13px;color:var(--gold-2);font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .block p{margin:0 0 10px;font-size:15px;color:var(--text)}
+  .block p:last-child{margin-bottom:0}
+  .block ul{margin:8px 0 0;padding-left:22px;color:var(--text);font-size:14.5px}
+  .block ul li{margin-bottom:8px}
+  .block ul li b{color:var(--gold-2);font-weight:600}
+  .block ol{margin:8px 0 0;padding-left:22px;color:var(--text);font-size:14.5px}
+  .block ol li{margin-bottom:8px}
+
+  .quote{padding:18px 22px;background:rgba(200,164,92,0.06);border-left:3px solid var(--gold);border-radius:6px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text);font-size:18px;line-height:1.45;margin:14px 0}
+  .quote span{display:block;color:var(--muted);font-size:11px;font-style:normal;margin-top:8px;font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
+
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .quote{padding:14px 18px;background:rgba(200,164,92,0.06);border-left:3px solid var(--gold);border-radius:6px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text);font-size:17px;line-height:1.4}
-  .quote span{display:block;color:var(--muted);font-size:11px;font-style:normal;margin-top:6px;font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
 
-  /* CPP NOW (current state) */
-  .now-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
-  .now-card{padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
-  .now-card.gold{border-color:rgba(200,164,92,.35);background:linear-gradient(180deg,rgba(200,164,92,.05),var(--panel))}
-  .now-card h4{margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-2)}
-  .now-card .row{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line-2);font-size:13.5px}
-  .now-card .row:last-child{border-bottom:0}
-  .now-card .row .k{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;align-self:center}
-  .now-card .row .v{color:var(--text)}
-  .now-card .row .v b{color:var(--gold-2)}
-
-  /* COMPARE TABLE */
-  .compare{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
-  .compare .head,.compare .row{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:0;border-bottom:1px solid var(--line)}
-  .compare .head{background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
-  .compare .head > div,.compare .row > div{padding:14px 18px;border-right:1px solid var(--line)}
-  .compare .head > div:last-child,.compare .row > div:last-child{border-right:0}
-  .compare .row:last-child{border-bottom:0}
-  .compare .row .k{color:var(--text);font-weight:600;font-size:14px;background:var(--bg-2)}
-  .compare .row .imp{color:var(--muted);font-size:13.5px}
-  .compare .row .cpp{color:var(--text);font-size:13.5px}
-  .compare .row .cpp b{color:var(--gold-2)}
+  /* TÉCNICA box (highlight) */
+  .tecnica{padding:18px 20px;border:1px solid rgba(200,164,92,.30);border-radius:10px;background:linear-gradient(180deg,rgba(200,164,92,.06),rgba(200,164,92,0));margin:14px 0}
+  .tecnica .l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+  .tecnica h5{margin:0 0 6px;font-size:15.5px;font-weight:700;color:var(--gold-3)}
+  .tecnica p{margin:0;font-size:14px;color:var(--text)}
 
   /* FRAMEWORKS */
   .fw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .fw{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
-  .fw h4{margin:0 0 10px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-2);display:flex;align-items:center;gap:10px}
+  .fw{padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .fw h4{margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--gold-2);display:flex;align-items:center;gap:10px}
   .fw h4 .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);background:rgba(200,164,92,.12);padding:2px 8px;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
   .fw p{margin:0 0 8px;color:var(--muted);font-size:13.5px}
   .fw ol,.fw ul{margin:8px 0 0;padding-left:18px;color:var(--text);font-size:13.5px}
-  .fw ol li,.fw ul li{margin-bottom:4px}
+  .fw ol li,.fw ul li{margin-bottom:5px}
   .fw code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-2);background:var(--bg-2);padding:2px 6px;border-radius:4px;border:1px solid var(--line)}
-  .fw .cpp-ver{margin-top:10px;padding:10px 12px;background:rgba(200,164,92,.08);border-left:2px solid var(--gold);border-radius:4px;font-size:13px;color:var(--text)}
-  .fw .cpp-ver b{color:var(--gold-2)}
-  .fw .cpp-ver .l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;display:block;margin-bottom:4px}
 
   /* CASES */
   .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .case{padding:18px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;gap:8px;position:relative}
-  .case.cpp{border-color:rgba(200,164,92,.30);background:linear-gradient(180deg,rgba(200,164,92,.04),var(--panel-2))}
+  .case{padding:18px;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;gap:8px}
   .case .who{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold-3);line-height:1.2}
   .case .spec{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
   .case .arc{font-size:13px;color:var(--text)}
   .case .nums{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold-2);padding-top:6px;border-top:1px dashed var(--line-2)}
   .case .arrow{color:var(--gold);margin:0 4px}
-  .case a{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--gold);text-decoration:underline;text-decoration-color:rgba(200,164,92,.3)}
 
-  /* OBJ TABLE */
+  /* OBJ */
   .obj{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
-  .obj-row{display:grid;grid-template-columns:260px 1fr;border-bottom:1px solid var(--line);padding:16px 20px;gap:18px;align-items:start}
+  .obj-row{display:grid;grid-template-columns:240px 1fr;border-bottom:1px solid var(--line);padding:16px 20px;gap:18px;align-items:start}
   .obj-row:last-child{border-bottom:0}
   .obj-row .o{font-weight:600;color:var(--text);font-size:14px;display:flex;align-items:center;gap:10px;font-style:italic}
   .obj-row .o::before{content:"✕";color:var(--danger);font-size:13px;font-style:normal}
@@ -166,8 +131,7 @@
 
   /* OFFER */
   .offer{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .price-card{padding:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel),var(--bg-2));display:flex;flex-direction:column;gap:12px;position:relative}
-  .price-card.gold{border-color:rgba(200,164,92,.4)}
+  .price-card{padding:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel),var(--bg-2));display:flex;flex-direction:column;gap:12px}
   .price-card .head{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
   .price-card .price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;letter-spacing:-.02em;color:var(--gold-2);line-height:1.05}
   .price-card .price small{font-size:14px;color:var(--muted);font-weight:500;font-family:'JetBrains Mono',monospace}
@@ -175,7 +139,7 @@
   .price-card ul li{margin-bottom:4px}
   .price-card ul li b{color:var(--gold-2)}
 
-  /* PROGRAM (entrega) */
+  /* PROGRAM */
   .prog{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .prog .item{padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
   .prog .item h5{margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--gold-2)}
@@ -191,13 +155,14 @@
   .step .arrow{position:absolute;right:-9px;top:50%;width:18px;height:18px;background:var(--bg);border:1px solid var(--line);border-radius:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:10px;z-index:2}
   .step:last-child .arrow{display:none}
 
-  /* BIZUS */
-  .bizus{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .bizu{padding:18px;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden}
-  .bizu .rank{position:absolute;top:-6px;right:-2px;font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:600;color:var(--bg-2);line-height:1;letter-spacing:-.05em}
-  .bizu h4{margin:0 0 8px;font-size:14.5px;font-weight:700;position:relative;z-index:1}
-  .bizu p{margin:0;color:var(--muted);font-size:13px;position:relative;z-index:1}
-  .bizu .for{margin-top:8px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);background:rgba(200,164,92,.10);padding:2px 8px;border-radius:4px;letter-spacing:.08em;text-transform:uppercase;position:relative;z-index:1}
+  /* PRACTICE (best practices to pick) */
+  .practice{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .pr{padding:22px;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid rgba(200,164,92,.25);border-radius:12px;display:flex;flex-direction:column;gap:10px}
+  .pr .n{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);font-weight:600;line-height:.9}
+  .pr h4{margin:0;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-3)}
+  .pr p{margin:0;color:var(--text);font-size:14px}
+  .pr .why{margin-top:6px;padding-top:10px;border-top:1px dashed var(--line-2);font-size:13px;color:var(--muted)}
+  .pr .why b{color:var(--gold-2);font-weight:500}
 
   /* QUOTES */
   .quotes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -205,27 +170,11 @@
   .qbox p{margin:0;font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text);line-height:1.4}
   .qbox span{display:block;margin-top:8px;color:var(--muted);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;font-style:normal}
 
-  /* PLAN (action items) */
-  .plan{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .plan-item{padding:18px;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:10px;display:flex;gap:14px;align-items:flex-start}
-  .plan-item .n{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:14px;font-weight:600;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(200,164,92,.10);border:1px solid rgba(200,164,92,.25);border-radius:50%}
-  .plan-item .body{flex:1}
-  .plan-item h5{margin:0 0 4px;font-size:14.5px;font-weight:700;color:var(--text)}
-  .plan-item p{margin:0;color:var(--muted);font-size:13px}
-  .plan-item .due{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-2);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;display:inline-block}
-
   /* CALLOUT */
   .callout{margin-top:24px;padding:22px 24px;background:linear-gradient(135deg,rgba(200,164,92,.07),rgba(200,164,92,0));border:1px solid rgba(200,164,92,.25);border-radius:12px;display:flex;gap:18px;align-items:flex-start}
   .callout .ico{width:30px;height:30px;border-radius:8px;background:rgba(200,164,92,.15);color:var(--gold-2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
-  .callout p{margin:0;font-size:14px;color:var(--text)}
+  .callout p{margin:0;font-size:14.5px;color:var(--text)}
   .callout strong{color:var(--gold-2)}
-
-  /* PADRAO PUGA */
-  .escala{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
-  .escala-tier{padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;text-align:center}
-  .escala-tier .icon{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-2);margin-bottom:4px}
-  .escala-tier .name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600}
-  .escala-tier .desc{font-size:11.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 
   /* FOOTER */
   footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--dim);font-size:12px;font-family:'JetBrains Mono',monospace;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -233,35 +182,27 @@
   /* RESPONSIVE */
   @media (max-width: 1000px){
     .timeline{grid-template-columns:1fr 1fr}
-    .stats{grid-template-columns:1fr 1fr}
-    .deep{grid-template-columns:1fr}
-    .deep .left{border-right:0;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:18px}
     .grid-2{grid-template-columns:1fr}
-    .now-grid{grid-template-columns:1fr}
     .cases{grid-template-columns:1fr 1fr}
-    .bizus{grid-template-columns:1fr 1fr}
     .ladder{grid-template-columns:1fr}
     .step{border-right:0;border-bottom:1px solid var(--line)}
     .step:last-child{border-bottom:0}
     .step .arrow{display:none}
-    .plan{grid-template-columns:1fr}
+    .practice{grid-template-columns:1fr}
     .quotes-grid{grid-template-columns:1fr}
     .offer{grid-template-columns:1fr}
     .prog{grid-template-columns:1fr 1fr}
     .fw-grid{grid-template-columns:1fr}
     .obj-row{grid-template-columns:1fr;gap:6px}
-    .compare .head,.compare .row{grid-template-columns:1fr 1fr 1fr}
-    .escala{grid-template-columns:1fr 1fr}
     .section-head .lede{display:none}
   }
   @media (max-width: 600px){
     .wrap{padding:28px 16px 64px}
     .nav{margin:-28px -16px 0;padding:12px 16px}
     .timeline{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr}
     .cases{grid-template-columns:1fr}
-    .bizus{grid-template-columns:1fr}
     .prog{grid-template-columns:1fr}
+    .day{padding:22px}
     h1{font-size:32px}
   }
 </style>
@@ -269,318 +210,460 @@
 <body>
 <div class="wrap">
 
-  <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <span class="brand">CPP · Análise</span>
+      <span class="brand">Estudo · Império</span>
       <span class="sep">/</span>
-      <a href="#alvo">Alvo</a>
-      <a href="#cpp-now">CPP hoje</a>
-      <a href="#compare">Comparativo</a>
-      <a href="#imperio">Império (4 dias)</a>
-      <a href="#cpp-plan">Nosso desafio</a>
+      <a href="#visao">Visão</a>
+      <a href="#timeline">Estrutura 4 dias</a>
+      <a href="#dia1">Dia 1</a>
+      <a href="#dia2">Dia 2</a>
+      <a href="#dia3">Dia 3</a>
+      <a href="#dia4">Dia 4</a>
       <a href="#frameworks">Frameworks</a>
       <a href="#cases">Cases</a>
       <a href="#objecoes">Objeções</a>
       <a href="#oferta">Oferta</a>
-      <a href="#programa">Entrega</a>
+      <a href="#programa">Programa</a>
       <a href="#funil">Funil</a>
-      <a href="#bizus">Bizus</a>
-      <a href="#plano">Plano</a>
+      <a href="#quotes">Frases</a>
+      <a href="#praticas">Práticas pra pegar</a>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
-    <div class="crest">Cirurgião Particular Premium</div>
-    <div class="eyebrow"><span class="dot"></span>Inteligência competitiva &middot; benchmark Império Médico &middot; aplicação CPP</div>
-    <h1>Desafio CPP <em>04 a 07 / Mai</em><br/>análise do Império Médico aplicada</h1>
-    <p class="subtitle">Leitura cronológica das 4 transcrições do desafio Império Médico, frameworks decompostos, cases nominais, mecânica de objeções, oferta e funil de comprometimento — traduzidos pra execução do nosso desafio CPP de 4 dias com a dupla Patrick Suyti + Dr. Mateus Jeronimo.</p>
+    <div class="eyebrow"><span class="dot"></span>Material de estudo &middot; Patrick + Mateus</div>
+    <h1>Desafio Império Médico — <em>como funciona</em></h1>
+    <p class="subtitle">Resumo detalhado dos 4 dias do desafio do Império Médico (14 a 17 de abril de 2026), com Juliano e Cláudio. Foco: o que eles fazem, como conduzem, quais técnicas aplicam em cada dia e quais as melhores práticas que vamos pegar.</p>
     <div class="meta">
-      <span class="chip gold"><strong>Datas</strong> 04 a 07 / Maio / 2026</span>
-      <span class="chip gold"><strong>Meta</strong> 20-25 fechamentos &middot; R$ 38-42k</span>
-      <span class="chip gold"><strong>Tráfego</strong> R$ 20k</span>
-      <span class="chip gold"><strong>Inscritos-alvo</strong> 400</span>
-      <span class="chip"><strong>Faixa de receita</strong> R$ 760k–1,05M</span>
-      <span class="chip"><strong>Dupla</strong> Patrick + Mateus</span>
-      <span class="chip"><strong>Closer</strong> Vitor</span>
-      <span class="chip"><strong>Suporte</strong> Stephany</span>
+      <span class="chip"><strong>Período</strong> 14 a 17 / Abr / 2026</span>
+      <span class="chip"><strong>Duração total</strong> 8h 34m</span>
+      <span class="chip"><strong>Apresentadores</strong> Juliano + Cláudio</span>
+      <span class="chip"><strong>Inscrição</strong> R$ 97</span>
+      <span class="chip"><strong>Oferta no Dia 4</strong> R$ 69k</span>
+      <span class="chip"><strong>Resultado</strong> 160+ novos no desafio</span>
     </div>
   </header>
 
-  <!-- ALVO -->
-  <section id="alvo">
+  <!-- VISÃO -->
+  <section id="visao">
     <div class="section-head">
       <span class="num">00</span>
-      <h2>Alvo do desafio CPP</h2>
-      <span class="lede">Os números que precisamos bater no primeiro desafio.</span>
+      <h2>Visão geral</h2>
+      <span class="lede">O que é o desafio, quem conduz, qual o jogo.</span>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="l">Janela</div><div class="v">04–07 Mai<small>4 dias ao vivo</small></div></div>
-      <div class="stat"><div class="l">Inscritos-alvo</div><div class="v">400<small>via tráfego R$ 20k</small></div></div>
-      <div class="stat"><div class="l">Vendas-alvo</div><div class="v">20–25<small>conversão 5–6%</small></div></div>
-      <div class="stat"><div class="l">Ticket</div><div class="v">R$ 38–42k<small>porta de entrada</small></div></div>
-      <div class="stat"><div class="l">Receita-alvo</div><div class="v">R$ 760k – 1,05M<small>1º desafio</small></div></div>
-      <div class="stat"><div class="l">Total dos 5 desafios</div><div class="v">R$ 3,5M<small>lucro projetado</small></div></div>
-      <div class="stat"><div class="l">Imersão (06–07 Ago)</div><div class="v">600 cirurgiões<small>Premium R$ 60k + Elite R$ 150k</small></div></div>
-      <div class="stat"><div class="l">Meta lucro Patrick</div><div class="v">R$ 5,4M<small>Meta C — &gt; R$ 5,5M</small></div></div>
+
+    <div class="grid-2">
+      <div class="fw">
+        <h4>Quem conduz</h4>
+        <p><b>Juliano</b> — fundador do Império. Pega o eixo emocional, espiritual, narrativa pessoal. História pessoal: família pobre na Bahia, 16 filhos, dislexia, escreveu 14 livros, leu 3 mil. Função no desafio: derrubar crença, aplicar dor, vender propósito, ler quotes bíblicas.</p>
+        <p><b>Cláudio</b> — sócio/diretor. Pega o eixo analítico, matemático, empresarial. História pessoal: família de 11 médicos na Bahia, largou medicina pelo direito, voltou por chamado. Função no desafio: mostrar números, ensinar a oferta, desafiar à execução.</p>
+        <p><b>Diretores</b> — entram nas calls 1:1 personalizadas com leads pré-qualificados. Tutores ex-alunos (Meuse, Natália) aparecem como prova social.</p>
+      </div>
+      <div class="fw">
+        <h4>O que vendem</h4>
+        <p>Vendem o <b>Império Médico</b>: programa de 1 ano que combina mentoria quinzenal ao vivo, área de membros, evento presencial em SP, guardião individual no WhatsApp, oficinas de implementação, módulos pra secretária, grupos por nível.</p>
+        <p>Discurso central: <b>"não é curso, é ecossistema"</b>. O produto não é informação, é suporte vitalício pra transformar consultório em empresa milionária.</p>
+        <p>Missão narrativa: <b>"salvar vidas salvando médicos"</b> (espelhada no projeto FIDE no México sobre depressão e suicídio médico).</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="fw">
+        <h4>Estatura do Império (números que eles citam)</h4>
+        <ul>
+          <li><b>880+</b> mentorados totais</li>
+          <li><b>600</b> ativos hoje</li>
+          <li><b>84</b> colaboradores no time</li>
+          <li><b>43 / 55</b> especialidades RQE atendidas</li>
+          <li><b>R$ 1,1 bi</b> gerados pelos alunos cumulativamente (R$ 200M ano 1, R$ 900M ano 2)</li>
+          <li><b>R$ 50M</b> faturados pelo próprio Império no último ano</li>
+          <li>Crescimento <b>25-50%</b> por ano</li>
+        </ul>
+      </div>
+      <div class="fw">
+        <h4>A grande tese deles</h4>
+        <p>O médico brasileiro está <b>desvalorizando</b>. Salário médio 15k em 2010 → 22k em 2026, mas com inflação vale menos. O mercado vai sair de 580k pra <b>+1,3M médicos até 2035</b> (79k novos por ano). Convênios pagam R$ 112/consulta e R$ 1.500/cirurgia. Plantões esgotam a vida pessoal.</p>
+        <p>A solução que eles propõem: <b>medicina como empresa</b>. Trocar volume de consultas baratas por <b>poucos pacientes em acompanhamento de R$ 10-60k</b>. Ter posicionamento, oferta, funil, ecossistema. Pertencer ao 1% mais ricos.</p>
+      </div>
     </div>
   </section>
 
-  <!-- CPP NOW -->
-  <section id="cpp-now">
+  <!-- TIMELINE -->
+  <section id="timeline">
     <div class="section-head">
       <span class="num">01</span>
-      <h2>O que o CPP tem hoje</h2>
-      <span class="lede">Inventário do ecossistema antes de desenhar o desafio.</span>
-    </div>
-    <div class="now-grid">
-
-      <div class="now-card gold">
-        <h4>Time</h4>
-        <div class="row"><div class="k">Sócio 1</div><div class="v"><b>Patrick Suyti</b> — estratégia, copy, pitch, vendas. Eixo emocional / narrativa.</div></div>
-        <div class="row"><div class="k">Sócio 2</div><div class="v"><b>Dr. Mateus Jeronimo</b> — conteúdo, mentoria, estratégia digital. Eixo técnico / autoridade médica. <em>50/50, pé de igualdade.</em></div></div>
-        <div class="row"><div class="k">Gerente</div><div class="v">Luquita — gestor de tráfego (50% Expert / 50% CPP)</div></div>
-        <div class="row"><div class="k">Closer</div><div class="v"><b>Vitor</b> — fechamento das calls 1:1</div></div>
-        <div class="row"><div class="k">SDR / Suporte</div><div class="v">Stephany — WhatsApp +55 83 99352-7775</div></div>
-        <div class="row"><div class="k">Plataforma</div><div class="v">MemberKit (aulas) &middot; Notion (operação) &middot; Tally (onboarding)</div></div>
-        <div class="row"><div class="k">Brand</div><div class="v">Dark + Gold luxury &middot; assets em <code>github.com/pofazze/cpp-brand-assets</code></div></div>
-      </div>
-
-      <div class="now-card">
-        <h4>Mentorados ativos</h4>
-        <div class="row"><div class="k">01</div><div class="v"><b>Dr. Tiago Blaya</b> — Vascular / Lipedema · POA/RS</div></div>
-        <div class="row"><div class="k">02</div><div class="v"><b>Dr. Silvio Leite de Macedo Neto</b> — Quadril · Brasília/DF</div></div>
-        <div class="row"><div class="k">03</div><div class="v"><b>Dr. Leonidas Gripp Cotta Junior</b> — Joelho · Brasília/DF</div></div>
-        <div class="row"><div class="k">04</div><div class="v"><b>Dr. Danilo Lopes Coelho</b> — Quadril · Goiânia/GO (onboarding 22/04)</div></div>
-        <div class="row"><div class="k">05</div><div class="v">Dr. Thiago Carneiro <span style="color:var(--muted)">(cadastrado, sem onboarding)</span></div></div>
-        <div class="row"><div class="k">06</div><div class="v">Dr. Mario Motta — Capilar <span style="color:var(--muted)">(cadastrado, sem onboarding)</span></div></div>
-      </div>
-
-      <div class="now-card">
-        <h4>Escada de produtos CPP</h4>
-        <div class="row"><div class="k">Desafio</div><div class="v"><b>R$ 97</b> — porta de entrada online, 4 dias</div></div>
-        <div class="row"><div class="k">Premium</div><div class="v"><b>R$ 38–42k</b> — pitch dentro do desafio</div></div>
-        <div class="row"><div class="k">Mentoria pós</div><div class="v"><b>R$ 60k</b> — orgânico + SDR</div></div>
-        <div class="row"><div class="k">Elite</div><div class="v"><b>R$ 150k</b> — imersão + jantar</div></div>
-        <div class="row"><div class="k">Top</div><div class="v"><b>R$ 300k</b> — convite</div></div>
-      </div>
-
-      <div class="now-card">
-        <h4>Ativos prontos</h4>
-        <div class="row"><div class="k">ICP</div><div class="v">Documento profundo + 12 dores mapeadas (Geral/ICP_Completo_CPP_v1)</div></div>
-        <div class="row"><div class="k">Método</div><div class="v"><b>PREMIUM</b> 7 pilares: Postura · Reposicionamento · Encantamento · Marketing · Inteligência E/C · Unidade de Negócio · Multiplicação</div></div>
-        <div class="row"><div class="k">Roteiros</div><div class="v">Energia de Ruptura — 7 blocos, sempre dupla</div></div>
-        <div class="row"><div class="k">Boards públicos</div><div class="v">4 Mapas Mentorado já no ar (Tiago, Silvio, Leonidas, Danilo)</div></div>
-        <div class="row"><div class="k">Onboarding</div><div class="v">Tally + Notion (60 perguntas em 9 blocos)</div></div>
-        <div class="row"><div class="k">Captação</div><div class="v"><code>ludus-health-31zh.vercel.app</code> &middot; canais: Desafios + Jantares + Imersão</div></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- TAXONOMIA -->
-  <section>
-    <div class="section-head">
-      <span class="num">02</span>
-      <h2>Taxonomia oficial CPP</h2>
-      <span class="lede">Forma como classificamos o cirurgião na audiência. Nunca usar "Bugha" ou "Ruptura".</span>
-    </div>
-    <div class="escala">
-      <div class="escala-tier"><div class="icon">◇</div><div class="name">Pato</div><div class="desc">Convênio &middot; refém</div></div>
-      <div class="escala-tier"><div class="icon">◈</div><div class="name">Urubu</div><div class="desc">Sobrevivendo</div></div>
-      <div class="escala-tier"><div class="icon">◆</div><div class="name">Gavião</div><div class="desc">Cirurgião premium</div></div>
-      <div class="escala-tier"><div class="icon">★</div><div class="name">Águia</div><div class="desc">Empresário</div></div>
-    </div>
-    <div class="callout">
-      <div class="ico">!</div>
-      <p>Essa escala é o <strong>nosso framework de consciência</strong> — equivalente aos "níveis de consciência 1-4" que o Império usa. No desafio, o público frustrado é o <strong>Urubu</strong> querendo virar <strong>Gavião</strong>. O pitch de R$ 38-42k vende a transição. A imersão de Agosto vende o salto pra Águia.</p>
-    </div>
-  </section>
-
-  <!-- COMPARE -->
-  <section id="compare">
-    <div class="section-head">
-      <span class="num">03</span>
-      <h2>Império vs CPP — comparativo direto</h2>
-      <span class="lede">O que o Império faz vs nossa equivalente. Identificar gap e vantagem.</span>
-    </div>
-    <div class="compare">
-      <div class="head"><div>Variável</div><div>Império Médico</div><div>CPP (nosso)</div></div>
-      <div class="row"><div class="k">Mercado-alvo</div><div class="imp">Médicos em geral, 43 especialidades</div><div class="cpp"><b>Cirurgião premium</b> (foco vertical: ortopedia, vascular, plástica, capilar)</div></div>
-      <div class="row"><div class="k">Apresentadores</div><div class="imp">Juliano (visceral) + Cláudio (analítico)</div><div class="cpp"><b>Patrick</b> (estratégia/copy) + <b>Dr. Mateus</b> (técnico/médico)</div></div>
-      <div class="row"><div class="k">Ticket de entrada</div><div class="imp">R$ 69k (12x R$ 7,5k / 24x R$ 5k)</div><div class="cpp"><b>R$ 38-42k</b> (porta de entrada — 45% mais barato)</div></div>
-      <div class="row"><div class="k">Diferencial</div><div class="imp">Genérico em medicina, comunidade gigante</div><div class="cpp"><b>Cirurgião não tem espaço lá</b>. Nossa autoridade é cirúrgica, com Mateus como cirurgião que viveu a transição.</div></div>
-      <div class="row"><div class="k">Stack moral</div><div class="imp">Espiritual / bíblico / Sagrada Família</div><div class="cpp"><b>Honra do cirurgião</b> + legado familiar + ofício técnico. Tom premium mais sóbrio (não evangélico).</div></div>
-      <div class="row"><div class="k">Cases-vitrine</div><div class="imp">Danilo R$ 522k, Agnaldo R$ 596k, Sandra R$ 200k</div><div class="cpp">4 mentorados ativos com onboarding completo, boards públicos, métodos rastreáveis. <b>Falta consolidar 1-2 com número bruto pra avalanchar.</b></div></div>
-      <div class="row"><div class="k">Programa</div><div class="imp">Mentoria quinzenal + guardião + evento + grupos</div><div class="cpp"><b>6 meses</b> + 3 individuais Patrick+Mateus + 12 coletivos + Mapa Mentorado individual + grupo</div></div>
-      <div class="row"><div class="k">Volume</div><div class="imp">880+ mentorados, 600 ativos</div><div class="cpp">4 ativos hoje. <b>Esse desafio precisa elevar pra ~25.</b></div></div>
-      <div class="row"><div class="k">Imersão</div><div class="imp">Evento anual SP, 400 pax</div><div class="cpp"><b>06-07 Ago — Grupo Acelerador</b>, capacidade 600 cirurgiões. Confirmado.</div></div>
-      <div class="row"><div class="k">Funil</div><div class="imp">Form → call 1:1 → PIX 1k → 69k</div><div class="cpp">Inscrição R$ 97 → desafio → pitch ao vivo → call com Vitor → 38-42k</div></div>
-    </div>
-  </section>
-
-  <!-- IMPERIO TIMELINE -->
-  <section id="imperio">
-    <div class="section-head">
-      <span class="num">04</span>
-      <h2>Estrutura dos 4 dias do Império (referência)</h2>
-      <span class="lede">A cronologia que o concorrente usou. Nossa proposta abaixo se espelha mas adapta.</span>
+      <h2>Estrutura geral dos 4 dias</h2>
+      <span class="lede">Cada aula encerra anunciando quem vem amanhã, ancorando audiência.</span>
     </div>
     <div class="timeline">
-      <div class="day">
+      <div class="day-card">
         <div class="label">Dia 1 &middot; 14/Abr &middot; 1h22</div>
         <div class="title">Posicionamento + Mindset</div>
         <div class="by">Juliano</div>
-        <div class="role"><span>Função no funil</span>Quebra de crença, dor financeira aplicada, primeiro CTA pra call 1:1.</div>
+        <div class="role"><span>Função</span>Quebra de crença, dor financeira aplicada, primeiro CTA pra call 1:1.</div>
       </div>
-      <div class="day">
+      <div class="day-card">
         <div class="label">Dia 2 &middot; 15/Abr &middot; 2h12</div>
-        <div class="title">Construindo o Ecossistema</div>
-        <div class="by">Juliano + Cláudio</div>
-        <div class="role"><span>Função no funil</span>Matemática brutal + cases extremos. Empurra urgência da call 1:1.</div>
+        <div class="title">Ecossistema Milionário</div>
+        <div class="by">Juliano + Cláudio entra</div>
+        <div class="role"><span>Função</span>Matemática brutal + cases extremos. Empurra urgência da call 1:1.</div>
       </div>
-      <div class="day">
+      <div class="day-card">
         <div class="label">Dia 3 &middot; 16/Abr &middot; 2h25</div>
         <div class="title">Caminhos pros R$ 100k (oferta)</div>
         <div class="by">Cláudio</div>
-        <div class="role"><span>Função no funil</span>Ensina a fórmula da oferta. Desafio prático: subir consulta 50%.</div>
+        <div class="role"><span>Função</span>Ensina a fórmula da oferta. Desafio prático ao vivo: subir consulta 50%.</div>
       </div>
-      <div class="day">
+      <div class="day-card">
         <div class="label">Dia 4 &middot; 17/Abr &middot; 2h35</div>
-        <div class="title">Testemunhos + pitch R$ 69k</div>
-        <div class="by">Juliano</div>
-        <div class="role"><span>Função no funil</span>Avalanche de cases, identidade sagrada, oferta + PIX R$ 1k.</div>
+        <div class="title">Testemunhos + Pitch R$ 69k</div>
+        <div class="by">Juliano (Cláudio apoia)</div>
+        <div class="role"><span>Função</span>Avalanche de cases, identidade sagrada, oferta + PIX R$ 1k.</div>
       </div>
     </div>
     <div class="callout">
       <div class="ico">i</div>
-      <p>Os 3 primeiros dias somam <strong>5h59m</strong> — quase 6 horas pra construir desejo, autoridade e urgência <strong>antes</strong> de mostrar preço. O dia 4 sozinho tem 2h35m e é onde o número final aparece. Proporção: <strong>~70% pré-pitch, 30% pitch</strong>. Vamos seguir essa proporção.</p>
+      <p>Os 3 primeiros dias somam <strong>5h59m</strong> — quase 6 horas pra construir desejo, autoridade e urgência <strong>antes</strong> de mostrar preço. O dia 4 sozinho tem 2h35m e é onde o número final aparece. Proporção: <strong>~70% pré-pitch, 30% pitch</strong>.</p>
     </div>
   </section>
 
-  <!-- CPP PLAN -->
-  <section id="cpp-plan">
+  <!-- DIA 1 -->
+  <section id="dia1">
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>Dia 1 — Posicionamento + Mindset</h2>
+      <span class="lede">Juliano abre. Função: quebrar crença e capturar lead pra call 1:1.</span>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <div class="left">
+          <h3>Ecossistema Imperial</h3>
+          <div class="meta-line">14/Abr · 1h22 · Juliano sozinho · CTA: formulário + QR pra call 1:1</div>
+        </div>
+        <div class="right">"posicionamento é rei<br/>(80% do resultado)"</div>
+      </div>
+
+      <div class="block">
+        <h4>Como começa</h4>
+        <p>Juliano abre com <b>tese de mindset financeiro</b>: <em>"lucro é ajustável, dinheiro é velocidade impulsionada por decisões e vitórias acumuladas"</em>. Não fala de produto, não fala de programa, não fala de preço. Começa pelo <b>estado mental</b> do médico.</p>
+        <p>Logo em seguida vem a <b>história pessoal</b>: família pobre na Bahia, 16 filhos, mãe dizendo <em>"o dia de muito é véspera de nada"</em>, escassez herdada. Vincula isso ao caso da aluna <b>Sandra</b> (55-60 anos, ouvia afirmações diárias, virou referência aos 60). A mensagem subterrânea é: <em>"crença limitante destrói faturamento, e resultado destrói crença"</em>.</p>
+      </div>
+
+      <div class="block">
+        <h4>Como ele constrói o posicionamento como rei</h4>
+        <p>Sobe pra <b>posicionamento como 80% do resultado</b>, independente de internet, especialidade ou cidade. Ataca o "médico bom mas pobre" — chama isso de <b>dor filosófica</b>.</p>
+        <p>Usa <b>duas analogias-chave</b> que se repetem nos 4 dias:</p>
+        <ul>
+          <li><b>Montblanc</b> — caneta de R$ 20 vs caneta de R$ 100 mil. Mesma função, valor percebido diferente. Ensina que o preço é parte do produto. <em>"Itens caros são vistos como melhores."</em></li>
+          <li><b>Santa Teresa</b> — <em>"aquilo que mais custa é o que mais vale"</em>. Comparado ao sacrifício de Cristo. Justifica cobrar caro como ato de transformação, não exploração.</li>
+        </ul>
+      </div>
+
+      <div class="tecnica">
+        <div class="l">Técnica de estudo &middot; Dia 1 &middot; minuto 00:43</div>
+        <h5>Exercício financeiro de papel e caneta</h5>
+        <p>Juliano para tudo, pede a audiência pegar papel e caneta, e responder ao vivo:</p>
+        <p style="margin-top:8px"><em>"Quanto dinheiro você tem na conta agora? Sua renda mensal soma quanto (com plantões e aluguéis)? Em quanto tempo você quebra se parar tudo hoje? Qual o seu faturamento projetado até o fim do ano se nada mudar? Qual a porcentagem disso que vem das suas redes sociais?"</em></p>
+        <p style="margin-top:8px">Aplica <b>dor visceral em tempo real</b>, antes de qualquer venda. A audiência sente o vazio antes de receber a promessa.</p>
+      </div>
+
+      <div class="block">
+        <h4>Conceitos plantados nesse dia</h4>
+        <ul>
+          <li><b>3 dores do paciente</b>: interna (sinto), externa (vejo), filosófica (por quê).</li>
+          <li><b>3 níveis de produto</b>: consulta de convênio = peanuts; acompanhamento R$ 10-40k (média R$ 18k); premium R$ 60k+.</li>
+          <li><b>Ecossistema físico vs digital</b>: consultório/clínica/centro cirúrgico vs livros/cursos/mentoria/consulta online.</li>
+          <li><b>Pilares</b>: MAPS, MM, FCI + 6 motores imperiais (citados sem detalhar — guarda pra mentoria paga).</li>
+          <li><b>Equação de valor</b>: aumenta com possibilidade de êxito + promessa forte; diminui com tempo/esforço.</li>
+          <li><b>Não vender cura</b> (antiético): vender casuística, resultado, transformação.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Como termina e captura</h4>
+        <p>Encerra com call to action <b>suave</b> — sem preço, sem produto:</p>
+        <ul>
+          <li>Filtro: <b>só médicos</b> (não veterinário, não dentista no funil principal).</li>
+          <li>Pede pra preencher formulário ou bater QR code.</li>
+          <li>Confirmação por <b>WhatsApp dos admins</b>, sem links de venda no broadcast.</li>
+          <li>Promessa: análise individual de <b>perfil + Instagram</b> ao vivo na call de 1h com Juliano, Cláudio ou diretor.</li>
+          <li>Promessa do número: insights pra bater <b>R$ 100k/mês</b>.</li>
+          <li>Escassez: <b>"120 primeiros vagas, abrindo extras"</b>.</li>
+          <li>Bait pra amanhã: <em>"20h, Cláudio com Canva, Movimento Criação"</em>.</li>
+        </ul>
+      </div>
+
+      <div class="quote">"Dor é inevitável. Sofrimento é opcional. Sacrifício é chamado." <span>Juliano · Dia 1</span></div>
+    </div>
+  </section>
+
+  <!-- DIA 2 -->
+  <section id="dia2">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Dia 2 — Construindo o Ecossistema</h2>
+      <span class="lede">Juliano abre, Cláudio entra. Função: matemática + cases extremos + autoridade.</span>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <div class="left">
+          <h3>Construindo o Ecossistema Milionário</h3>
+          <div class="meta-line">15/Abr · 2h12 · Juliano abre / Cláudio entra · CTA: empurra a call 1:1</div>
+        </div>
+        <div class="right">"matemática brutal +<br/>cases extremos"</div>
+      </div>
+
+      <div class="block">
+        <h4>Como Juliano abre</h4>
+        <p>Reabre com <b>posicionamento + preço</b>: cita que vendia consulta de R$ 1.500 há 11 anos atrás, isso já o posicionava como premium. Critica anestesistas e cirurgiões que <em>"demoram pra agir por excesso de análise"</em>. Critica agências de conteúdo que <em>"falham por falta de essência"</em> e desperdiçam investimento que poderia ir pra tráfego.</p>
+        <p>Sobe pro pilar do <b>médico como empresário</b>:</p>
+      </div>
+
+      <div class="quote">"Médico que não conhece DRE é peão de luxo do empresário dono do hospital." <span>Juliano · Dia 2</span></div>
+
+      <div class="block">
+        <h4>Quando Cláudio entra</h4>
+        <p>Cláudio assume e <b>desmistifica academia</b>. Diz que medicina ensina técnica mas não ensina negócio. Ensina o framework central do desafio: <b>5 alavancas imperiais</b>.</p>
+        <ol>
+          <li><b>Nº de pacientes</b> (pra quem acredita que mais pacientes resolvem faturamento)</li>
+          <li><b>Conversão de vendas</b> (consulta vira acompanhamento)</li>
+          <li><b>Ticket médio</b> (receita total ÷ pacientes atendidos)</li>
+          <li><b>LTV</b> (Lifetime Value, recorrência reduz custo de aquisição)</li>
+          <li><b>Linhas de receita</b> (livros, plantão, consultoria, cursos, franquia)</li>
+        </ol>
+      </div>
+
+      <div class="tecnica">
+        <div class="l">Técnica de estudo &middot; Dia 2 &middot; matemática viva</div>
+        <h5>O contraste que vira o jogo</h5>
+        <p style="margin-top:6px">Cláudio coloca dois mundos lado a lado, ao vivo, na frente da audiência:</p>
+        <p style="margin-top:8px"><em>"80 consultas por mês a R$ 200/h = R$ 17k/mês. Mesmo médico, mesma agenda, mas com 20% de conversão pra acompanhamento de R$ 10k = R$ 160k+/mês. Mesmo número de pacientes, 10x o resultado."</em></p>
+        <p style="margin-top:8px">Adiciona o segundo contraste: <em>"5 vendas de R$ 20k = R$ 100k em 1 mês. 1.000 consultas de R$ 100 = R$ 100k em ~1 ano."</em></p>
+        <p style="margin-top:8px">Funciona porque <b>não argumenta — calcula</b>. A audiência não pode contestar matemática.</p>
+      </div>
+
+      <div class="block">
+        <h4>Como ele introduz os cases extremos</h4>
+        <p>Depois da matemática vem o <b>banho de cases-bomba</b> com nome, especialidade, cidade e número absoluto:</p>
+        <ul>
+          <li><b>Danilo</b> (neurocirurgião, USP, Dourados/MS) — R$ 522k no 1º mês, R$ 150k/semana com novo funil. Pegou empréstimo pra entrar.</li>
+          <li><b>Agnaldo</b> (neurologista) — R$ 596k/mês no consultório, total &gt; R$ 6,3M acumulado. Vendeu 1º tratamento de R$ 60k.</li>
+          <li><b>Sandra</b> — R$ 35k → 200k seguidores em 4 meses no Império. Atende online sem consultório.</li>
+        </ul>
+        <p>Não usa anedota. Usa <b>nome + cidade + número</b>. Faz a audiência sentir que é repetível.</p>
+      </div>
+
+      <div class="block">
+        <h4>Frameworks que ele empacota nesse dia</h4>
+        <ul>
+          <li><b>5 etapas de venda diária</b>: 1) chamar atenção (criativos) · 2) promessa ligada ao desejo · 3) copy persuasiva · 4) atenção plena (consulta) · 5) revelar nova oportunidade + oferta. <em>"80% do resultado tá na etapa 5."</em></li>
+          <li><b>Níveis de consciência do prospect</b>: focar nível 3 e 4 (consciente do problema/solução, conhece médico, frustrado por falhas anteriores). Ignorar 1 e 2 (inconscientes).</li>
+          <li><b>Para &lt; R$ 100k/mês</b>: 3 passos (posicionamento nichado / produto de acompanhamento alto / vender pra todo paciente).</li>
+          <li><b>Para &gt; R$ 100k</b>: gestão, contratações, DRE, escala.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Como termina</h4>
+        <p>Encerra empurrando a <b>call 1:1</b> de novo, agora com mais peso (já viu a matemática, já viu os cases). Avisa que <em>"120 primeiros já preencheram, abrindo horários extras"</em>. Bait pra amanhã: <em>"aula de oferta com Cláudio"</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIA 3 -->
+  <section id="dia3">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>Dia 3 — A aula de OFERTA</h2>
+      <span class="lede">Cláudio puxa sozinho. Função: ensinar a oferta e gerar buy-in comportamental antes do pitch.</span>
+    </div>
+    <div class="day">
+      <div class="day-header">
+        <div class="left">
+          <h3>Caminhos para R$ 100k em consultórios</h3>
+          <div class="meta-line">16/Abr · 2h25 · Cláudio sozinho · CTA: subir consulta 50% essa semana + agendar call</div>
+        </div>
+        <div class="right">"a aula que separa o<br/>mercado da venda"</div>
+      </div>
+
+      <div class="block">
+        <h4>Como começa (a tacada de prova social)</h4>
+        <p>Cláudio abre <b>lendo publicamente os nomes dos 24 novos membros</b> que entraram nos primeiros dois dias do desafio:</p>
+        <p style="font-size:14px;color:var(--muted);margin-top:6px">Dr. Ricardo, Dra. Vanessa, Dra. Joana, Dra. Isabel, Dr. Luiz, Dra. Diossélia, Dr. Leonardo, Dra. Daniela, Dr. Bruno, Dra. Fernanda, Dr. Wellington, Dra. Roberta, Dra. Kenia, Dr. Caio, Dra. Luciana, Dra. Eliane, Dra. Bianca Abiatti, Dra. Juliana, Dr. Bruno Dias, Dr. Marcelo, Dra. Norma, Dra. Flávia, Dra. Gabriela, Dr. Vinícius...</p>
+        <p style="margin-top:10px">Dispara a frase: <em>"apenas 6 horários restantes pras calls personalizadas"</em>. Prova social ao vivo + escassez ao vivo, no mesmo segundo. Funciona porque <b>cria FOMO no resto da audiência</b> que ainda não comprou.</p>
+      </div>
+
+      <div class="block">
+        <h4>História pessoal de Cláudio</h4>
+        <p>Compartilha trajetória familiar: 11 irmãos médicos na Bahia, avô formou na primeira faculdade de medicina do Brasil (Pelourinho, Salvador), espalhados pelo país. Largou medicina pelo direito achando ser mais lucrativo. Voltou por chamado divino. Hoje lidera 615 mentorados em 43 especialidades.</p>
+        <p>Usa o <b>anel familiar</b> de médicos como símbolo. <em>"Legado rompido e retomado via empreendedorismo."</em></p>
+        <p>Combate vilões: convênios, plantões, escravidão acadêmica.</p>
+      </div>
+
+      <div class="block">
+        <h4>Estratégias práticas pra levantar dinheiro rápido</h4>
+        <ul>
+          <li><b>Pra quem tem volume</b> (convênio/particular): montar e vender acompanhamento médico (R$ 10-30k) usando a base existente.</li>
+          <li><b>Pra iniciantes sem volume</b>: tráfego orgânico (conteúdo pra clientes nível 4) e pago.</li>
+          <li>Exemplo Rafa Martins: ~500k seguidores no orgânico, fatura ~R$ 200k/mês mesmo com agenda lotada.</li>
+          <li>Argumento-chave: <em>"5 vendas de R$ 20k = R$ 100k em 1 mês. 1.000 consultas de R$ 100 = quase 1 ano de trabalho."</em></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>Cases novos do Dia 3 (vitrine especializada)</h4>
+        <ul>
+          <li><b>Meuse</b> (ginecologista, Piranhas/AL, cidade 25k hab) — R$ 40k → R$ 100k+/mês. 4 atendimentos/dia = R$ 15k. Consultas de 1h fecham R$ 15-20k. Hoje é tutor do Império.</li>
+          <li><b>Nath</b> (psiquiatra) — R$ 20-30k → R$ 390k/mês. Clínica de 400 m². Entrou em mar/2024, fez R$ 100k já no abril.</li>
+          <li><b>Fernanda Moura</b> (TEA/autismo, Mogi das Cruzes) — R$ 30k → R$ 390k/mês. Recuperou investimento no 1º mês (parcelado 24x). Mentora pele do Império.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>A AULA CENTRAL: a fórmula da oferta</h4>
+        <p>Cláudio ensina ao vivo a fórmula que eles mesmos usam pra vender o programa:</p>
+        <ul>
+          <li><b>Posicionar em mercado de</b> saúde, dinheiro ou relacionamentos.</li>
+          <li><b>Frase âncora</b>: <em>"Ajudo [avatar] a [resultado] via [método específico] mesmo [objeção]"</em>.</li>
+          <li><b>Confiança em três camadas</b>: em você, em sua empresa, em seu produto.</li>
+          <li><b>Cobrar caro = posicionar</b> (vinho R$ 189 vs R$ 19, percepção de qualidade).</li>
+          <li><b>Valor 10x o preço</b>.</li>
+          <li><b>Equação de valor</b>: desejo + prova + redução de tempo/esforço/recuperação do investimento.</li>
+          <li><b>Estrutura de construção</b>: pesquisa do paciente → lista 5 obstáculos + 5 soluções → 3 a 5 pilares passo a passo → bônus + escassez real + urgência + 5 garantias (incondicional, condicional, pessoal, crédito, período).</li>
+        </ul>
+      </div>
+
+      <div class="tecnica">
+        <div class="l">Técnica de estudo &middot; Dia 3 &middot; o desafio comportamental</div>
+        <h5>Subir consulta 50% essa semana — sem retorno grátis</h5>
+        <p style="margin-top:6px">Cláudio coloca a audiência pra agir <b>antes</b> de mostrar o preço final do programa. Pede pra cada médico subir o preço da consulta em <b>pelo menos 50%</b> — exemplo: R$ 400 → R$ 600. Sem retorno grátis pro paciente. Sem desculpa.</p>
+        <p style="margin-top:8px">Funciona em três camadas:</p>
+        <ul style="margin-top:6px">
+          <li>Quem sobe e dá certo, vira sangrento defensor (testou e funcionou)</li>
+          <li>Quem sobe e perde paciente, descobre o que tava errado e percebe que precisa do método</li>
+          <li>Quem não sobe, sente vergonha — e a vergonha facilita a decisão de comprar</li>
+        </ul>
+        <p style="margin-top:8px"><b>Buy-in comportamental antes da venda</b>. Quem pôs a mão na massa não recua quando ouve o número.</p>
+      </div>
+
+      <div class="block">
+        <h4>Como termina</h4>
+        <p>Anuncia: <em>"amanhã 8h, vendas completas com Juliano. Últimos 2 horários pra agendar call"</em>. Bait máximo. Quem chegou aqui tá calibrado pra ouvir o número.</p>
+      </div>
+
+      <div class="quote">"Não vende pacote de manicure. Vende plano de acompanhamento. Plano cura, pacote termina." <span>Cláudio · Dia 3</span></div>
+    </div>
+  </section>
+
+  <!-- DIA 4 -->
+  <section id="dia4">
     <div class="section-head">
       <span class="num">05</span>
-      <h2>Proposta de estrutura — Desafio CPP 04 a 07 / Mai</h2>
-      <span class="lede">Mapeamento dia a dia, com nomes, função e bait pra puxar pro próximo dia.</span>
+      <h2>Dia 4 — Testemunhos + Pitch R$ 69k</h2>
+      <span class="lede">Juliano puxa o pitch. Função: vender com identidade + estrutura completa + escada de pagamento.</span>
     </div>
-    <div class="timeline">
-      <div class="day cpp">
-        <div class="label">Dia 1 &middot; 04/Mai &middot; ~1h30</div>
-        <div class="title">A Falência do Cirurgião Refém</div>
-        <div class="by">Patrick puxa &middot; Mateus apoia</div>
-        <div class="role"><span>Tema</span>Mindset: por que cirurgião bom é pobre? Diagnóstico Pato/Urubu/Gavião/Águia. Exercício financeiro ao vivo.</div>
-      </div>
-      <div class="day cpp">
-        <div class="label">Dia 2 &middot; 05/Mai &middot; ~2h</div>
-        <div class="title">A Matemática do Cirurgião Premium</div>
-        <div class="by">Mateus puxa &middot; Patrick provoca</div>
-        <div class="role"><span>Tema</span>Mateus mostra a virada técnica. Patrick destrincha as 5 alavancas. Cases dos mentorados ativos.</div>
-      </div>
-      <div class="day cpp">
-        <div class="label">Dia 3 &middot; 06/Mai &middot; ~2h30</div>
-        <div class="title">Método PREMIUM — os 7 pilares</div>
-        <div class="by">Patrick + Mateus em dupla</div>
-        <div class="role"><span>Tema</span>Postura · Reposicionamento · Encantamento · Marketing · Inteligência E/C · Unidade de Negócio · Multiplicação. Desafio prático ao vivo.</div>
-      </div>
-      <div class="day cpp">
-        <div class="label">Dia 4 &middot; 07/Mai &middot; ~2h30</div>
-        <div class="title">A Decisão do Cirurgião Premium</div>
-        <div class="by">Patrick puxa o pitch &middot; Vitor entra como closer</div>
-        <div class="role"><span>Tema</span>Avalanche de depoimentos. Honra do cirurgião. Estrutura da mentoria. Oferta R$ 38–42k + PIX R$ 1k.</div>
-      </div>
-    </div>
-
-    <!-- DEEP DIVE PROPOSTA CPP DIA A DIA -->
-    <div class="deep" style="margin-top:24px">
-      <div class="left">
-        <div class="day-num">DIA 1 &middot; 04/Mai</div>
-        <h3>A Falência do Cirurgião Refém</h3>
-        <div class="who">Patrick puxa · Mateus apoia</div>
-        <div class="stat-mini"><span>Tema central</span><strong>Diagnóstico Pato/Urubu/Gavião/Águia</strong></div>
-        <div class="stat-mini"><span>CTA do dia</span><strong>Reservar call de diagnóstico com Vitor</strong></div>
-        <div class="stat-mini"><span>Bait amanhã</span><strong>Mateus mostra os 5 motores do faturamento cirúrgico</strong></div>
-      </div>
-      <div class="right">
-        <div>
-          <h4>Arco proposto</h4>
-          <div class="arc">
-            <p>Patrick abre com a tese: <em>"o melhor cirurgião do hospital é o que mais cobra do convênio e o que menos leva pra casa"</em>. Histórico de Patrick (estrategista que viu o cirurgião sangrar de dentro). Mateus reforça com a vivência médica direta: bolsas, plantões, o salto pro consultório.</p>
-            <p>Aplicação da <b>escala Pato/Urubu/Gavião/Águia</b> ao vivo. Cada cirurgião na audiência se localiza. Diagnóstico instantâneo. Exercício de papel: <em>"quanto fatura por mês? Quanto sobra? Em quanto tempo quebra sem mudar?"</em>.</p>
-            <p>Encerra com primeiro CTA: agendar <b>call de diagnóstico com Vitor</b>. Sem pitch de preço. Apenas captura.</p>
-          </div>
+    <div class="day">
+      <div class="day-header">
+        <div class="left">
+          <h3>Testemunhos e Chamada para Prosperidade</h3>
+          <div class="meta-line">17/Abr · 2h35 · Juliano (Cláudio apoia) · CTA: PIX R$ 1k + call de fechamento</div>
         </div>
-        <div class="quote">"Cirurgião não tem teto. Tem prisão. Convênio é a grade. Gestão é a chave." <span>tom proposto · Patrick — dia 1</span></div>
+        <div class="right">"40 minutos de cases<br/>antes de mostrar o número"</div>
       </div>
-    </div>
 
-    <div class="deep">
-      <div class="left">
-        <div class="day-num">DIA 2 &middot; 05/Mai</div>
-        <h3>A Matemática do Cirurgião Premium</h3>
-        <div class="who">Mateus puxa · Patrick provoca</div>
-        <div class="stat-mini"><span>Tema central</span><strong>5 alavancas + cases CPP</strong></div>
-        <div class="stat-mini"><span>CTA do dia</span><strong>Confirmar call com Vitor (escassez)</strong></div>
-        <div class="stat-mini"><span>Bait amanhã</span><strong>Os 7 pilares do Método PREMIUM ao vivo</strong></div>
+      <div class="block">
+        <h4>Como abre — a avalanche de depoimentos</h4>
+        <p>Juliano <b>não vende ainda</b>. Abre com aproximadamente <b>40 minutos consecutivos de depoimentos</b>. Cada depoimento segue o mesmo padrão: nome + especialidade + cidade + ponto de partida + número atual.</p>
+        <ul>
+          <li><b>Everton</b> — saiu do Mais Médicos com R$ 15k/mês, sem RQE, sem Instagram, vendia boca a boca pra agentes de saúde, consultório de 15 m². Hoje fatura &gt; R$ 250k há 3 meses seguidos.</li>
+          <li><b>Thalisson</b> (Maranhão) — sem consultório próprio, atendia no PSF, faturava R$ 40k/mês. Alugou sala, expandiu pra clínica de 10 salas com soroterapia, 74-75 pacientes em acompanhamento. R$ 300k/mês só em protocolos.</li>
+          <li><b>Fábio</b> (cardiologista) — R$ 196k no 1º mês, R$ 400k no 2º mês, &gt; R$ 1M acumulado. Estava endividado, casa em risco. Esposa incentivou. Chorou na call de iniciação.</li>
+          <li><b>Padrão repetível</b>: saíram do Mais Médicos / PSF / plantão, sem estrutura inicial, sem RQE, sem Instagram. Pegaram empréstimo ou cheque especial. Venderam <b>plano de acompanhamento</b> (não consulta isolada). Quebraram barreira com prejuízo inicial. Subiram ticket progressivo. Priorizam recorrência.</li>
+        </ul>
+        <p>Depois desses 40 minutos, a audiência <b>não tem mais como dizer "não funciona"</b>. Foi inundada de prova.</p>
       </div>
-      <div class="right">
-        <div>
-          <h4>Arco proposto</h4>
-          <div class="arc">
-            <p>Mateus assume e <strong>fala como cirurgião pra cirurgião</strong>: o que é fazer 4 cirurgias por R$ 1.500 cada num turno de 12h vs 1 paciente premium em acompanhamento de R$ 30k. Aplica as <b>5 alavancas</b>: nº pacientes, conversão, ticket, LTV, linhas de receita.</p>
-            <p>Patrick provoca com matemática: <em>"40 cirurgias convênio = R$ 60k. 5 pacientes premium acompanhados = R$ 150k. Mesmo tempo. Triplo do dinheiro."</em>. Apresenta os mentorados ativos como cases vivos: <b>Dr. Tiago Blaya</b> (vascular/lipedema, POA), <b>Dr. Silvio Leite</b> (quadril, BSB), <b>Dr. Leonidas Gripp</b> (joelho, BSB), <b>Dr. Danilo Lopes</b> (quadril, GO).</p>
-            <p>Mostra <b>Mapa Mentorado público</b> ao vivo no telão (cada mentorado tem URL própria). Prova de método e estrutura.</p>
-          </div>
-        </div>
-        <div class="quote">"O convênio não é renda. É distração paga. Toda hora ali é hora roubada do cirurgião que você poderia ser." <span>tom proposto · Mateus — dia 2</span></div>
-      </div>
-    </div>
 
-    <div class="deep">
-      <div class="left">
-        <div class="day-num">DIA 3 &middot; 06/Mai</div>
-        <h3>Método PREMIUM — 7 pilares</h3>
-        <div class="who">Patrick + Mateus em dupla</div>
-        <div class="stat-mini"><span>Tema central</span><strong>P · R · E · M · I · U · M</strong></div>
-        <div class="stat-mini"><span>CTA do dia</span><strong>Desafio prático: definir 1 paciente premium da próxima semana</strong></div>
-        <div class="stat-mini"><span>Bait amanhã</span><strong>"Amanhã 20h: a decisão"</strong></div>
+      <div class="block">
+        <h4>A virada espiritual e o resgate de identidade</h4>
+        <p>Juliano sobe pra <b>narrativa bíblica</b>: Davi e Golias (salto de fé apesar do medo), Sagrada Família (sofreu antes da glória). E aí entra o golpe principal:</p>
+        <p><b>Eclesiástico 38:1-6</b> — <em>"Honra o médico, porque o Senhor o criou."</em></p>
+        <p>Resgata <b>identidade sagrada</b> da medicina. Justifica cobrar caro como dever divino. Resolve a culpa do médico cristão (maioria do mercado brasileiro) de monetizar.</p>
       </div>
-      <div class="right">
-        <div>
-          <h4>Arco proposto</h4>
-          <div class="arc">
-            <p>Apresentação dos <b>7 pilares oficiais</b>: Postura, Reposicionamento, Encantamento, Marketing, Inteligência Emocional/Comercial, Unidade de Negócio, Multiplicação. Cada pilar com Patrick e Mateus se intercalando — Mateus dá o exemplo cirúrgico, Patrick dá o gatilho de execução.</p>
-            <p><b>Desafio comportamental ao vivo</b>: cada cirurgião na audiência define <strong>1 paciente real da próxima semana</strong> que vai ser convertido em acompanhamento premium. Define o ticket. Define a oferta. Buy-in antes da venda.</p>
-            <p>Encerra anunciando: <em>"amanhã 20h, a aula da decisão"</em>. Bait máximo. Quem chegou aqui está calibrado pra ouvir o número.</p>
-          </div>
-        </div>
-        <div class="quote">"Encantamento não é cortesia. É arquitetura. Nada no consultório é por acaso." <span>tom proposto · Mateus — dia 3</span></div>
-      </div>
-    </div>
 
-    <div class="deep">
-      <div class="left">
-        <div class="day-num">DIA 4 &middot; 07/Mai</div>
-        <h3>A Decisão do Cirurgião Premium</h3>
-        <div class="who">Patrick puxa · Vitor entra como closer</div>
-        <div class="stat-mini"><span>Tema central</span><strong>Pitch R$ 38–42k</strong></div>
-        <div class="stat-mini"><span>CTA do dia</span><strong>PIX R$ 1k → call de qualificação com Vitor → fechamento</strong></div>
-        <div class="stat-mini"><span>Resultado-alvo</span><strong>20–25 fechamentos</strong></div>
+      <div class="quote">"Honra o médico, porque o Senhor o criou. Eclesiástico 38:1." <span>Juliano · Dia 4 · momento da virada</span></div>
+
+      <div class="block">
+        <h4>Os números do mercado (justificativa econômica)</h4>
+        <p>Mostra a realidade de fora: salário médico estagnando (15k em 2010 → 22k em 2026, mas com inflação vale menos). +1,3M médicos até 2035 (79k novos por ano). Curva exponencial dos milionários médicos via empresariado.</p>
+        <p>Mensagem: <em>"quem não tiver posicionamento vira commodity."</em></p>
       </div>
-      <div class="right">
-        <div>
-          <h4>Arco proposto</h4>
-          <div class="arc">
-            <p>Abre com <b>40 minutos de avalanche de depoimentos</b>: Tiago Blaya, Silvio Leite, Leonidas Gripp, Danilo Lopes (cada um com vídeo curto de 2-3 min gravado em vertical). Mostra Mapa Mentorado de cada um ao vivo. Padrão repetível.</p>
-            <p>Sobe pra <b>Honra do Cirurgião</b>: ofício técnico que salva vidas, legado familiar, vocação que a faculdade trava em vez de liberar. Resgate de identidade. Patrick fala com Mateus testemunhando.</p>
-            <p>Apresenta a <b>estrutura completa do programa</b> pela primeira vez: 6 meses, 3 individuais Patrick+Mateus, 12 coletivos, Mapa Mentorado próprio, grupo, brindes premium.</p>
-            <p><b>Pitch da oferta R$ 38-42k</b> (à vista) + escada de parcelamento. <b>PIX R$ 1k</b> reserva a call com Vitor. Lista pública dos 20-25 que entraram. Sequência <em>"sem desculpas"</em> mata as últimas objeções.</p>
-          </div>
-        </div>
-        <div class="quote">"Você não escolheu medicina pra trabalhar mais. Escolheu pra cuidar melhor. O sistema te cobrou o oposto. Hoje a gente devolve a chave." <span>tom proposto · Patrick — dia 4</span></div>
+
+      <div class="block">
+        <h4>Apresentação do programa (pela primeira vez)</h4>
+        <p>É só agora, no Dia 4, que ele revela a <b>estrutura completa do programa de 1 ano</b>:</p>
+        <ul>
+          <li>Mentoria quinzenal ao vivo (terças, 18-23h, Juliano e Cláudio sempre presentes)</li>
+          <li>Iniciação 1:1 com Juliano (sessão pra destruir dúvidas)</li>
+          <li>Área de membros gravada</li>
+          <li>Evento presencial anual em SP (3-5 julho, 400 pax, sem convidados)</li>
+          <li>Guardião individual no WhatsApp (calls mensais, monitora execução, família, faturamento)</li>
+          <li>Tutorias mensais com tutores ex-alunos (Meuse, Natália)</li>
+          <li>Grupos por tema (conteúdo, tráfego, páginas, vídeos)</li>
+          <li>Módulo secretária + oficina de 8h ensinando secretárias a vender</li>
+          <li>Grupos por nível de faturamento (100k- e 100k+)</li>
+          <li>Alta Cúpula Imperial (&gt; R$ 250k/mês por 3 meses)</li>
+          <li>Ritual interno: quem bate R$ 100k recebe placa + depoimento + passa-faixa</li>
+        </ul>
+        <p>Vende <b>ecossistema vitalício</b>, não curso. <em>"Não é informação, é suporte."</em></p>
       </div>
+
+      <div class="tecnica">
+        <div class="l">Técnica de estudo &middot; Dia 4 &middot; o pitch financeiro</div>
+        <h5>Escada de pagamento + tier por idade + PIX de comprometimento</h5>
+        <p style="margin-top:8px">A oferta é apresentada com várias entradas, todas convergindo:</p>
+        <ul style="margin-top:6px">
+          <li><b>R$ 69.000</b> à vista (preço durante o desafio)</li>
+          <li><b>12x R$ 7.500</b></li>
+          <li><b>24x R$ 5.000</b> (com abatimento se quitar antes)</li>
+          <li>Modelo <b>entrada de R$ 5k + mensal</b></li>
+          <li><b>Tier &gt; 70 anos</b>: R$ 48k à vista, 12x R$ 5.250, 24x R$ 3.500 (resolve objeção de idade)</li>
+          <li><b>PIX R$ 1.000</b> de comprometimento — marca a call com Juliano/Cláudio/diretores. Devolve se ficar em dúvida pós-call.</li>
+        </ul>
+        <p style="margin-top:10px"><b>Por que o PIX de R$ 1k é genial</b>:</p>
+        <ul>
+          <li>Filtra curioso de comprometido (separa quem vai pra call de quem não vai)</li>
+          <li>Reduz no-show das calls (já tem 1k investido, vai aparecer)</li>
+          <li>Gera ancoragem (quem pagou R$ 1k aceita o R$ 69k mais fácil)</li>
+          <li>Reembolso garantido elimina o medo (a maioria não pede de volta depois da call)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>A sequência "sem desculpas"</h4>
+        <p>Antes de fechar, Juliano <b>lista cada objeção comum e refuta com case nominal</b>:</p>
+        <ul>
+          <li>"Não tenho RQE" → Everton, Thalisson</li>
+          <li>"Não tenho Instagram" → Everton, Sandra</li>
+          <li>"Minha cidade é pequena" → Meuse (Piranhas/AL, 25k hab)</li>
+          <li>"Não tenho dinheiro" → Danilo (empréstimo), Fábio (esposa incentivou)</li>
+          <li>"Estou velho / 70+" → Sandra (60 anos, virou referência)</li>
+          <li>"Filhos / família contra" → Nath (pós separação abusiva)</li>
+          <li>"Minha especialidade não dá" → 43 nominais + Fernanda Moura (autismo)</li>
+          <li>"Sem tempo" → Meuse (R$ 200k em 4 períodos, 16h/semana)</li>
+          <li>"Já tentei" → posiciona como nível 4 (frustrado)</li>
+          <li>"Mercado saturado" → curva exponencial dos milionários</li>
+        </ul>
+        <p>Não argumenta. <b>Cita</b>. Cada objeção tem nome próprio que a derruba.</p>
+      </div>
+
+      <div class="block">
+        <h4>Cancelamento e fechamento</h4>
+        <p>Cláusula final: <b>contrato rígido, cancelamento difícil</b>. <em>"Risco do empreendedor. Foco em comprometidos. Devolvemos só o PIX de R$ 1k antes da call."</em></p>
+        <p>Encerra lendo publicamente os <b>160+ novos nomes</b> que entraram durante o desafio inteiro. Avalanche social final.</p>
+      </div>
+
+      <div class="quote">"Não pense nas dificuldades atuais. Pense em como vencê-las. Dê o primeiro passo. É um salto de fé." <span>Juliano · Dia 4</span></div>
     </div>
   </section>
 
@@ -588,122 +671,112 @@
   <section id="frameworks">
     <div class="section-head">
       <span class="num">06</span>
-      <h2>Frameworks adaptados ao CPP</h2>
-      <span class="lede">Cada framework do Império traduzido pra linguagem cirúrgica.</span>
+      <h2>Os frameworks que eles ensinam</h2>
+      <span class="lede">As estruturas que eles entregam ao vivo (e usam pra vender o próprio Império).</span>
     </div>
     <div class="fw-grid">
 
       <div class="fw">
         <h4><span class="tag">FW 01</span> 5 alavancas imperiais</h4>
-        <p>Império usa pra qualquer médico. Vamos traduzir pra cirurgião:</p>
+        <p>Toda matemática do desafio roda em cima dessas cinco. Eles voltam o tempo todo.</p>
         <ol>
-          <li><b>Nº de pacientes</b> — orgânico de ortopedia/vascular tem público específico (dor crônica, mobilidade, lipedema)</li>
-          <li><b>Conversão</b> — consulta pré-operatória vira plano premium, não cirurgia única</li>
-          <li><b>Ticket médio</b> — pacote pré + cirurgia + pós + acompanhamento de 12 meses</li>
-          <li><b>LTV</b> — paciente bilateral / família / second opinion</li>
-          <li><b>Linhas de receita</b> — palestras, second opinion online, cursos curtos pra colegas</li>
+          <li><b>Nº de pacientes</b> (tráfego orgânico + pago)</li>
+          <li><b>Conversão de vendas</b> (consulta vira acompanhamento)</li>
+          <li><b>Ticket médio</b> (receita / pacientes)</li>
+          <li><b>LTV</b> (Lifetime Value, recompra, família, recorrência)</li>
+          <li><b>Linhas de receita</b> (livros, plantão estratégico, mentoria, consultoria)</li>
         </ol>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Mateus apresenta no Dia 2 com cirurgia como exemplo concreto. <em>"Bilateral é LTV. Quem opera o joelho direito hoje volta no esquerdo em 18 meses."</em></div>
       </div>
 
       <div class="fw">
-        <h4><span class="tag">FW 02</span> 5 etapas de venda</h4>
-        <p>O Império diz que <b>80% do resultado está na etapa 5</b>. Aula de oferta sempre antes do pitch.</p>
+        <h4><span class="tag">FW 02</span> 5 etapas de venda diária</h4>
+        <p>Eles dizem que <b>80% do resultado está na etapa 5</b>.</p>
         <ol>
-          <li>Chamar atenção (criativos do Luquita)</li>
-          <li>Promessa ligada ao desejo (cirurgião premium &gt; cirurgião escravo do plano)</li>
-          <li>Copy — Energia de Ruptura, 7 blocos, sempre dupla</li>
-          <li>Atenção plena — desafio ao vivo</li>
-          <li>Revelar nova oportunidade + oferta R$ 38-42k</li>
+          <li>Chamar atenção (conteúdo, criativo, anúncio)</li>
+          <li>Promessa ligada ao desejo do prospect</li>
+          <li>Copy persuasiva</li>
+          <li>Atenção plena (consulta, reunião)</li>
+          <li>Revelar nova oportunidade + oferta</li>
         </ol>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Dia 3 = construção da oferta (Método PREMIUM). Dia 4 = pitch + número.</div>
       </div>
 
       <div class="fw">
-        <h4><span class="tag">FW 03</span> 3 dores</h4>
-        <p>Atacar as três cobre 100% do espectro emocional do cirurgião:</p>
+        <h4><span class="tag">FW 03</span> 3 dores do paciente</h4>
+        <p>Atacar essas três cobre 100% do espectro emocional do médico-cliente.</p>
         <ul>
-          <li><b>Externa</b> — agenda lotada de convênio, plantões, fadiga</li>
-          <li><b>Interna</b> — sentir que vale mais do que ganha, vergonha de cobrar caro</li>
-          <li><b>Filosófica</b> — <em>"sou o melhor da equipe e o que menos leva dinheiro pra casa"</em></li>
+          <li><b>Externa</b> — visível (obesidade, dor física, queda de cabelo)</li>
+          <li><b>Interna</b> — sentimento (bullying, vergonha, baixa autoestima)</li>
+          <li><b>Filosófica</b> — contraria expectativa (<em>"sou bom no que faço, por que sou pobre?"</em>)</li>
         </ul>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Patrick aperta a interna e a filosófica no Dia 1. Mateus aperta a externa no Dia 2 (porque viveu).</div>
       </div>
 
       <div class="fw">
         <h4><span class="tag">FW 04</span> Equação de valor</h4>
-        <p>Sobe os de cima, baixa os de baixo:</p>
+        <p>Toda oferta forte sobe os de cima e baixa os de baixo.</p>
         <p style="margin-top:8px"><code>valor = (possibilidade × promessa) ÷ (tempo × esforço)</code></p>
         <ul>
-          <li>Sobe: cases dos mentorados + Mapa Mentorado público</li>
-          <li>Desce: <em>"em 6 meses você tem o reposicionamento — não 2 anos."</em></li>
+          <li>Sobe: cases (possibilidade) + promessa forte (FOMO)</li>
+          <li>Desce: tempo, esforço, tempo de recuperação do investimento</li>
         </ul>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Mostrar Mapa Mentorado de Tiago Blaya / Silvio / Leonidas / Danilo no telão durante o pitch. Prova visual de <em>"sai daqui em 6 meses com isso."</em></div>
       </div>
 
       <div class="fw">
         <h4><span class="tag">FW 05</span> Fórmula da oferta unitária</h4>
-        <p>Repetida várias vezes. Patrick e Mateus completam ao vivo:</p>
-        <p style="margin-top:8px"><code>Ajudo [cirurgião] a [resultado] via [método PREMIUM] mesmo [objeção]</code></p>
-        <p>Exemplo CPP:</p>
-        <p style="color:var(--text);font-style:italic;margin-top:6px"><em>"Ajudamos cirurgiões refém de convênio a faturar R$ 100k+/mês com pacientes premium em 6 meses, via Método PREMIUM, mesmo que sua agenda hoje esteja 80% travada por plantão."</em></p>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Frase âncora repetida ao final de cada dia. Patrick e Mateus alternam quem fala.</div>
+        <p>Repetida várias vezes ao vivo. Pode ser preenchida em 3 minutos.</p>
+        <p style="margin-top:8px"><code>Ajudo [avatar] a [resultado] via [método específico] mesmo [objeção]</code></p>
+        <p>Exemplo: <em>"ajudo mulheres de 40-60 a recuperar corpo, libido e energia via protocolo metabólico de 12 semanas mesmo sem dieta restritiva"</em>.</p>
       </div>
 
       <div class="fw">
         <h4><span class="tag">FW 06</span> 5 perguntas pra validar nicho</h4>
-        <p>O cirurgião na audiência se valida ao vivo:</p>
+        <p>Se &lt; 5 sim, mude. Se 5 sim, micronicha e simplifica.</p>
         <ol>
-          <li>Você é bom no que faz cirurgicamente?</li>
-          <li>Você ama o que opera?</li>
-          <li>Sua especialidade tem demanda crescente?</li>
-          <li>Existe paciente premium pra essa cirurgia?</li>
-          <li>Você sabe quem é esse paciente?</li>
+          <li>Você é bom no que faz?</li>
+          <li>Você ama?</li>
+          <li>O mercado tá crescendo?</li>
+          <li>Os clientes pagam caro?</li>
+          <li>Você consegue identificar o público com facilidade?</li>
         </ol>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Aplicar no Dia 2 ou 3. Quem responde 5 sim é leadquente pro Vitor.</div>
       </div>
 
       <div class="fw">
-        <h4><span class="tag">FW 07</span> Níveis de consciência</h4>
-        <p>Atacar só nível 3 e 4. Ignorar 1 e 2 — não compram. <b>No CPP a gente já tem nossa taxonomia: Pato / Urubu / Gavião / Águia.</b></p>
+        <h4><span class="tag">FW 07</span> 4 níveis de consciência</h4>
+        <p>Eles atacam só nível 3 e 4. Ignoram 1 e 2 — não compram.</p>
         <ul>
-          <li><b>Pato</b> = nível 1-2 — refém do convênio, não vê alternativa</li>
-          <li><b>Urubu</b> = nível 3 — vê o problema, sobrevive, frustrado <em>(target principal)</em></li>
-          <li><b>Gavião</b> = nível 4 — já tem premium, quer escalar <em>(target da imersão)</em></li>
-          <li><b>Águia</b> = empresário pleno, vira sócio / referência</li>
+          <li>1 — Inconsciente do problema</li>
+          <li>2 — Consciente do problema, não da solução</li>
+          <li>3 — Consciente da solução, não conhece você</li>
+          <li><b>4</b> — Conhece você e o produto, frustrado por falhas anteriores <em>(target)</em></li>
         </ul>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Dia 1 aplica a escala publicamente. Cada um se localiza. Quem é Pato vai se desconfortar. Quem é Urubu vai se identificar e querer virar Gavião — esse compra.</div>
       </div>
 
       <div class="fw">
-        <h4><span class="tag">FW 08</span> 3 níveis de produto</h4>
-        <p>No CPP a gente já tem a escada montada:</p>
+        <h4><span class="tag">FW 08</span> 3 níveis de produto no consultório</h4>
+        <p>Cada paciente entra por um, mas pode subir.</p>
         <ul>
-          <li><b>Convênio</b> = peanuts (R$ 200-1.500/cirurgia)</li>
-          <li><b>Pacote pré + cirurgia + pós</b> = R$ 8-15k</li>
-          <li><b>Acompanhamento premium 6-12 meses</b> = R$ 25-60k</li>
+          <li><b>Nível 1</b> — Consulta convênio: peanuts (R$ 112-200)</li>
+          <li><b>Nível 2</b> — Acompanhamento R$ 10-40k (média R$ 18k)</li>
+          <li><b>Nível 3</b> — Premium R$ 60k+ (eventos, experiências, personalizado)</li>
         </ul>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Mateus vai dar exemplo concreto: cirurgia de quadril no convênio paga R$ 1.500. O mesmo paciente no premium paga R$ 30-40k pelo pacote completo. Mesmo procedimento, 25x o valor.</div>
       </div>
 
       <div class="fw">
-        <h4><span class="tag">FW 09</span> Roteiro do paciente frustrado</h4>
-        <p>Pergunta-chave que ensinamos pro cirurgião fazer:</p>
-        <p style="color:var(--text);font-style:italic;margin-top:6px"><em>"Por que estou te recebendo? Quantos médicos você já consultou pro mesmo problema? O que faltou nas tentativas anteriores? Qual a sua parte na história?"</em></p>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Mateus ensina como cirurgião. Patrick ensina como dono de funil. Conteúdo do Pilar Encantamento.</div>
+        <h4><span class="tag">FW 09</span> Roteiro pro paciente frustrado</h4>
+        <p>Pergunta-chave que eles ensinam pro médico fazer na consulta:</p>
+        <p style="margin-top:8px"><em>"Por que eu estou te atendendo? Não quero ser sua próxima falha. Quero ser seu último médico. Qual a sua parcela de erro nas tentativas anteriores?"</em></p>
+        <p>Inverte o jogo: o paciente passa a se justificar, não o médico.</p>
       </div>
 
       <div class="fw">
         <h4><span class="tag">FW 10</span> 5 garantias possíveis</h4>
-        <p>O Império usa pra ensinar. Vamos aplicar pra nossa oferta:</p>
+        <p>Ensinam pra audiência aplicar e usam internamente.</p>
         <ul>
-          <li><b>Garantia de método</b> — Mapa Mentorado individual em até 30 dias</li>
-          <li><b>Garantia de presença</b> — Patrick e Mateus presentes nos 12 coletivos</li>
-          <li><b>Garantia de devolução do PIX R$ 1k</b> se desistir pós-call</li>
-          <li><b>Garantia de iniciação</b> — sessão 1:1 com a dupla nas primeiras 2 semanas</li>
-          <li><b>Garantia de comunidade</b> — grupo dos cirurgiões CPP por whatsapp</li>
+          <li>Incondicional (devolve sem pergunta)</li>
+          <li>Condicional (devolve mediante prova de execução)</li>
+          <li>Pessoal (avalista o próprio nome)</li>
+          <li>Crédito (gera crédito, não devolução)</li>
+          <li>Período (X dias específicos)</li>
         </ul>
-        <div class="cpp-ver"><span class="l">CPP &middot; aplicação</span>Apresentadas no Dia 4, depois do número.</div>
       </div>
 
     </div>
@@ -713,57 +786,95 @@
   <section id="cases">
     <div class="section-head">
       <span class="num">07</span>
-      <h2>Cases CPP — vitrine pro Dia 4</h2>
-      <span class="lede">Mentorados ativos com método e Mapa público. Falta cristalizar 1-2 com número bruto.</span>
+      <h2>Os cases que eles citam (combustível do desafio)</h2>
+      <span class="lede">Sempre nome + especialidade + cidade + número absoluto. Nunca anedota.</span>
     </div>
     <div class="cases">
 
-      <div class="case cpp">
-        <div class="who">Dr. Tiago Blaya</div>
-        <div class="spec">Cirurgia Vascular &middot; Lipedema &middot; POA / RS</div>
-        <div class="arc">Mentorado ativo. Reposicionamento em curso. Mapa Mentorado individual já público.</div>
-        <div class="nums">Mapa: <a href="https://pofazze.github.io/mapa-tiago-blaya/" target="_blank">mapa-tiago-blaya</a></div>
-      </div>
-
-      <div class="case cpp">
-        <div class="who">Dr. Silvio Leite de Macedo Neto</div>
-        <div class="spec">Ortopedia &middot; Quadril &middot; Brasília / DF</div>
-        <div class="arc">Mentorado ativo. Reposicionamento em curso. Mapa Mentorado individual já público.</div>
-        <div class="nums">Mapa: <a href="https://pofazze.github.io/mapa-silvio-leite/" target="_blank">mapa-silvio-leite</a></div>
-      </div>
-
-      <div class="case cpp">
-        <div class="who">Dr. Leonidas Gripp Cotta Junior</div>
-        <div class="spec">Ortopedia &middot; Joelho &middot; Clínica COTE / DF</div>
-        <div class="arc">Mentorado ativo. Reposicionamento em curso. Mapa Mentorado individual já público.</div>
-        <div class="nums">Mapa: <a href="https://pofazze.github.io/mapa-leonidas-gripp/" target="_blank">mapa-leonidas-gripp</a></div>
-      </div>
-
-      <div class="case cpp">
-        <div class="who">Dr. Danilo Lopes Coelho</div>
-        <div class="spec">Ortopedia &middot; Quadril &middot; Goiânia / GO</div>
-        <div class="arc">Mentorado ativo desde 22/04. Onboarding processado. Plano individual em construção.</div>
-        <div class="nums">Mapa: <a href="https://pofazze.github.io/mapa-danilo/" target="_blank">mapa-danilo</a></div>
+      <div class="case">
+        <div class="who">Danilo</div>
+        <div class="spec">Neurocirurgião · USP · Dourados/MS</div>
+        <div class="arc">Saiu da escassez (SUS + convênios), entrou pegando empréstimo, executou iniciação de 8h.</div>
+        <div class="nums">R$ 522k <span class="arrow">→</span> 1º mês · R$ 150k/semana</div>
       </div>
 
       <div class="case">
-        <div class="who">Dr. Thiago Carneiro</div>
-        <div class="spec">Ortopedia e Traumatologia</div>
-        <div class="arc">Cadastrado, sem onboarding. Pode entrar como cliente novo dentro do desafio.</div>
-        <div class="nums">Sem onboarding ainda</div>
+        <div class="who">Agnaldo</div>
+        <div class="spec">Neurologista</div>
+        <div class="arc">Vinha de instabilidade rico/pobre. Vendeu 1º tratamento de R$ 60k. Subiu de R$ 300k pra R$ 500k ajustando ticket.</div>
+        <div class="nums">R$ 596k/mês · total &gt; R$ 6,3M</div>
       </div>
 
       <div class="case">
-        <div class="who">Dr. Mario Motta</div>
-        <div class="spec">Transplante Capilar &middot; Alta Densidade</div>
-        <div class="arc">Cadastrado, sem onboarding. Diversifica vitrine além de ortopedia.</div>
-        <div class="nums">Sem onboarding ainda</div>
+        <div class="who">Sandra</div>
+        <div class="spec">Online · 55-60 anos</div>
+        <div class="arc">Ouvia afirmações diárias, 4 meses no Império. Atende online sem consultório físico.</div>
+        <div class="nums">R$ 35k <span class="arrow">→</span> 200k seguidores</div>
       </div>
 
-    </div>
-    <div class="callout">
-      <div class="ico">!</div>
-      <p><strong>Gap crítico antes de 04/Mai</strong> — Império leva cases com <em>número bruto</em> (Danilo R$ 522k, Agnaldo R$ 596k). Nossos 4 mentorados estão em <strong>processo de transformação</strong>, não ainda em <em>número-vitrine</em>. <strong>Ideia</strong>: gravar 4 vídeos curtos (2-3 min cada, vertical) com Tiago Blaya, Silvio, Leonidas e Danilo falando: <em>"o que mudou desde que entrei"</em> — ainda que sem número absoluto, mostra <strong>movimento</strong>, não só estado. Combinar com <strong>1-2 cases externos</strong> consolidados de cirurgião que Patrick já conheça.</p>
+      <div class="case">
+        <div class="who">Meuse</div>
+        <div class="spec">Ginecologista · Piranhas/AL · 25k hab</div>
+        <div class="arc">4 atendimentos/dia = R$ 15k. Consulta de 1h fecha R$ 15-20k. Hoje é tutor do Império.</div>
+        <div class="nums">R$ 40k <span class="arrow">→</span> &gt; R$ 100k/mês · total R$ 1,5M</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Nath</div>
+        <div class="spec">Psiquiatra · clínica 400 m²</div>
+        <div class="arc">Entrou em mar/2024. Já no abril fez R$ 100k. Pós separação abusiva.</div>
+        <div class="nums">R$ 20-30k <span class="arrow">→</span> R$ 390k/mês</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Fernanda Moura</div>
+        <div class="spec">TEA / autismo · Mogi das Cruzes</div>
+        <div class="arc">Anticapacitista. Recuperou investimento no 1º mês (parcelado 24x). Hoje mentora pele do Império.</div>
+        <div class="nums">R$ 30k <span class="arrow">→</span> R$ 390k/mês · ~R$ 3M/ano</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Everton</div>
+        <div class="spec">Sem RQE · sem Instagram inicial</div>
+        <div class="arc">Saiu do Mais Médicos. Vendia boca a boca pra agentes de saúde. Consultório de 15 m². Quitou Império em 3 parcelas.</div>
+        <div class="nums">R$ 15k <span class="arrow">→</span> &gt; R$ 250k/mês · 3 meses seguidos</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Thalisson</div>
+        <div class="spec">Endoscopista · Baixada Maranhense</div>
+        <div class="arc">Sem consultório próprio, atendia no PSF. Alugou sala, expandiu pra clínica de 10 salas com soroterapia.</div>
+        <div class="nums">R$ 40k <span class="arrow">→</span> R$ 300k/mês só protocolos</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Fábio</div>
+        <div class="spec">Cardiologista</div>
+        <div class="arc">Estava endividado, casa em risco. Esposa incentivou. Chorou na call de iniciação chamando-os de "milagreiros".</div>
+        <div class="nums">R$ 196k 1º mês <span class="arrow">→</span> R$ 400k 2º mês · &gt; R$ 1M acumulado</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Rafa Martins</div>
+        <div class="spec">Conteúdo orgânico · ~500k seguidores</div>
+        <div class="arc">Apesar de agenda lotada, escala via plano de acompanhamento.</div>
+        <div class="nums">R$ 47k <span class="arrow">→</span> ~R$ 200k/mês</div>
+      </div>
+
+      <div class="case">
+        <div class="who">Bruno · Cintia · Dani · Renatão · Vivi · Kellen · Luiz · Rafael · Jorge · Ivo</div>
+        <div class="spec">Múltiplas especialidades</div>
+        <div class="arc">Saltos típicos de 2x a 6x em poucos meses, citados por nome no Dia 4.</div>
+        <div class="nums">R$ 125k a R$ 610k/mês</div>
+      </div>
+
+      <div class="case">
+        <div class="who">160+ novos no desafio</div>
+        <div class="spec">Lista pública</div>
+        <div class="arc">Lidos ao vivo no Dia 4. Prova social final + avalanche.</div>
+        <div class="nums">Resultado do desafio analisado</div>
+      </div>
+
     </div>
   </section>
 
@@ -771,21 +882,21 @@
   <section id="objecoes">
     <div class="section-head">
       <span class="num">08</span>
-      <h2>Objeções típicas do cirurgião + refutação</h2>
-      <span class="lede">Adaptado pra realidade cirúrgica, com cases CPP e do mercado.</span>
+      <h2>Mecânica de objeções (sequência "sem desculpas")</h2>
+      <span class="lede">Cada objeção é refutada com case nominal e número. Não argumenta — cita.</span>
     </div>
     <div class="obj">
-      <div class="obj-row"><div class="o">"Sou cirurgião, não tenho tempo pra Instagram"</div><div class="a"><b>Dr. Silvio Leite</b> e <b>Dr. Leonidas Gripp</b> mantêm rotina cirúrgica em Brasília e estão construindo posicionamento dentro do CPP. <em>"Não é sobre estar online, é sobre ser referência. Mateus mostra como."</em></div></div>
-      <div class="obj-row"><div class="o">"Meu hospital não permite divulgação"</div><div class="a">CPP foca em consultório próprio (canal direto). <em>"O hospital é o trabalho. O consultório é a empresa. A gente constrói a empresa, não interfere no trabalho."</em></div></div>
-      <div class="obj-row"><div class="o">"Eu cobro R$ 800 a consulta, isso aqui é caro"</div><div class="a">Mateus pega: <em>"R$ 800 é o que o convênio te ensinou a achar caro. Paciente premium não compra consulta — compra acompanhamento de 6 a 12 meses, R$ 25-60k. Quem opera bilateral, R$ 100k+. A consulta é portal."</em></div></div>
-      <div class="obj-row"><div class="o">"Minha especialidade é muito específica / pouca gente"</div><div class="a"><b>Dr. Tiago Blaya</b> opera <b>lipedema</b> (subnicho). <b>Dr. Mario Motta</b> opera <b>capilar</b>. Subnicho concentra autoridade e ticket — não é problema, é alavanca.</div></div>
-      <div class="obj-row"><div class="o">"Não dá pra cobrar caro do paciente convênio"</div><div class="a">Não vamos. <em>"Convênio fica pro hospital. O premium vai pro consultório. Dois funis, dois públicos."</em></div></div>
-      <div class="obj-row"><div class="o">"Já tenho consultório premium, não preciso"</div><div class="a">Esse é o <b>Gavião</b>. Pode ir pro <b>Acelerador (Imersão 06-07/Ago)</b> ou Mentoria Elite R$ 150k. Vitor faz a triagem na call.</div></div>
-      <div class="obj-row"><div class="o">"R$ 38k é muito"</div><div class="a">Patrick: <em>"40 cirurgias convênio = R$ 60k brutos. 5 pacientes premium = R$ 150k. Em 6 meses paga 4x o programa. Em 12 meses, 10x."</em> + escada de parcelamento.</div></div>
-      <div class="obj-row"><div class="o">"Preciso falar com a esposa / sócio"</div><div class="a">PIX R$ 1k reserva a call com Vitor. <em>"Conversa, e se ficar com dúvida depois da call, devolvemos."</em></div></div>
-      <div class="obj-row"><div class="o">"Não tenho equipe / sou sozinho"</div><div class="a"><b>Pilar Unidade de Negócio</b>: vamos construir a equipe contigo, começando por uma única secretária treinada. Igual o Império aplica nas oficinas de 8h pra secretária.</div></div>
-      <div class="obj-row"><div class="o">"Já tentei mentoria e não funcionou"</div><div class="a">Posicionar como nível 4 (frustrado): <em>"Não quero ser sua próxima decepção. Quero ser sua última mentoria. Qual a sua parte no que não funcionou antes?"</em> — inverte o jogo.</div></div>
-      <div class="obj-row"><div class="o">"E se eu sair?"</div><div class="a">Contrato de 6 meses, blindado. <em>"Quem entra, entra pra entregar. Risco do empresário. Devolvemos só o PIX R$ 1k antes da call. Depois, é compromisso."</em></div></div>
+      <div class="obj-row"><div class="o">"Não tenho RQE"</div><div class="a"><b>Everton, Thalisson</b> — entraram sem RQE e ultrapassaram R$ 250k/mês. <em>"43 das 55 especialidades RQE estão dentro. Sem RQE também tá ok."</em></div></div>
+      <div class="obj-row"><div class="o">"Não tenho Instagram"</div><div class="a"><b>Everton</b> vendeu boca a boca. <b>Sandra</b> escalou online sem consultório físico.</div></div>
+      <div class="obj-row"><div class="o">"Minha cidade é pequena"</div><div class="a"><b>Meuse</b> em Piranhas/AL (25k hab) faz &gt; R$ 100k/mês. Médico em cidade de 8k hab faturava R$ 8k/mês <em>sem Instagram</em>.</div></div>
+      <div class="obj-row"><div class="o">"Não tenho dinheiro"</div><div class="a"><b>Danilo</b> pegou empréstimo. <b>Fábio</b> estava endividado. <em>"Pacientes vendem carro ou pegam empréstimo por prioridade. R$ 97 do desafio não paga cafezinho na Faria Lima."</em></div></div>
+      <div class="obj-row"><div class="o">"Estou velho / 70+"</div><div class="a">Tier especial: oferta a R$ 48k pra &gt; 70 anos. <b>Sandra</b> aos 60 virou referência.</div></div>
+      <div class="obj-row"><div class="o">"Filhos / família contra"</div><div class="a"><b>Nath</b> entrou pós separação abusiva. <b>Fábio</b> teve a esposa incentivando.</div></div>
+      <div class="obj-row"><div class="o">"Minha especialidade não dá"</div><div class="a">Lista nominal: emagrecimento, pediatria, psiquiatria, gineco, estética, nutri, neurocirurgia, cardio, neuro, oncologia. Mesmo TEA/autismo (<b>Fernanda Moura</b>).</div></div>
+      <div class="obj-row"><div class="o">"Estou sobrecarregado"</div><div class="a"><b>Meuse</b> faz R$ 200k em 4 períodos trabalhando 16h/semana. <em>"O problema não é tempo, é estrutura."</em></div></div>
+      <div class="obj-row"><div class="o">"Já tentei e não deu"</div><div class="a">Posiciona como nível 4 de consciência (frustrado). <em>"Não quero ser próxima falha, quero ser último médico."</em></div></div>
+      <div class="obj-row"><div class="o">"Preciso pensar"</div><div class="a">PIX R$ 1k de comprometimento + call 1:1. <em>"Se ficar com dúvida depois da call, devolvemos."</em></div></div>
+      <div class="obj-row"><div class="o">"Mercado tá saturado"</div><div class="a">Curva exponencial dos milionários médicos. <em>"+1,3M médicos até 2035. Quem não tiver posicionamento vira commodity."</em></div></div>
     </div>
   </section>
 
@@ -793,54 +904,48 @@
   <section id="oferta">
     <div class="section-head">
       <span class="num">09</span>
-      <h2>Estrutura proposta da oferta CPP</h2>
-      <span class="lede">Espelhada na mecânica do Império, com ticket adaptado e tier ajustado.</span>
+      <h2>Estrutura financeira da oferta</h2>
+      <span class="lede">Escada de pagamento + tier especial + entrada barata pro fechamento 1:1.</span>
     </div>
     <div class="offer">
-      <div class="price-card gold">
-        <div class="head">Oferta padrão (porta de entrada)</div>
-        <div class="price">R$ 38–42k <small>à vista (durante o desafio)</small></div>
+      <div class="price-card">
+        <div class="head">Oferta padrão (durante o desafio)</div>
+        <div class="price">R$ 69.000 <small>à vista</small></div>
         <ul>
-          <li><b>12x</b> proporcional</li>
-          <li><b>24x</b> com pequeno acréscimo</li>
-          <li>Modelo entrada + mensal</li>
-          <li>6 meses de programa</li>
-        </ul>
-      </div>
-      <div class="price-card gold">
-        <div class="head">PIX de comprometimento</div>
-        <div class="price">R$ 1.000 <small>via PIX</small></div>
-        <ul>
-          <li>Marca a call com <b>Vitor</b></li>
-          <li>Devolve se ficar em dúvida pós-call</li>
-          <li>Filtra impulso e qualifica intenção</li>
-          <li>Funciona como anchor — quem deu R$ 1k aceita melhor o R$ 38-42k</li>
+          <li><b>12x</b> de R$ 7.500</li>
+          <li><b>24x</b> de R$ 5.000 (com abatimento se quitar)</li>
+          <li>Modelo entrada R$ 5k + mensal</li>
         </ul>
       </div>
       <div class="price-card">
-        <div class="head">Próximo nível (pós-fechamento ou Gavião)</div>
-        <div class="price">R$ 60–150k</div>
+        <div class="head">Tier &gt; 70 anos</div>
+        <div class="price">R$ 48.000 <small>à vista</small></div>
         <ul>
-          <li><b>R$ 60k</b> — Mentoria pós-desafio (orgânico + SDR)</li>
-          <li><b>R$ 150k</b> — Mentoria Elite (Imersão 06-07/Ago)</li>
-          <li><b>R$ 300k</b> — Mentoria Top (apenas convite)</li>
-          <li>Ascensão progressiva, não tudo no desafio</li>
+          <li><b>12x</b> de R$ 5.250</li>
+          <li><b>24x</b> de R$ 3.500</li>
+          <li>Resolve objeção de idade ao vivo</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="head">PIX de comprometimento</div>
+        <div class="price">R$ 1.000 <small>via PIX</small></div>
+        <ul>
+          <li>Marca a call 1:1 com Juliano / Cláudio / diretores</li>
+          <li>Devolve se ficar em dúvida pós-call</li>
+          <li>Filtra impulso e qualifica intenção</li>
+          <li>Anchor — quem deu R$ 1k aceita o R$ 69k mais fácil</li>
         </ul>
       </div>
       <div class="price-card">
         <div class="head">Cancelamento</div>
         <div class="price">Contrato rígido</div>
         <ul>
-          <li>6 meses de comprometimento</li>
-          <li>Comunicado como "risco do empreendedor"</li>
+          <li>Não é fácil sair</li>
+          <li>"Risco do empreendedor"</li>
           <li>Foco do programa: comprometidos</li>
           <li>Protege LTV, blinda contra arrependimento</li>
         </ul>
       </div>
-    </div>
-    <div class="callout">
-      <div class="ico">$</div>
-      <p><strong>Mecânica do PIX R$ 1k</strong> — é o detalhe que separa um desafio de R$ 200k de um de R$ 1M. Filtra curioso, reduz no-show das calls com Vitor, gera ancoragem (quem pagou R$ 1k aceita o R$ 38-42k mais fácil) e o reembolso garante a venda emocional sem risco real, já que poucos pedem devolução depois da call de fechamento.</p>
     </div>
   </section>
 
@@ -848,22 +953,22 @@
   <section id="programa">
     <div class="section-head">
       <span class="num">10</span>
-      <h2>O que entregamos (estrutura do produto)</h2>
-      <span class="lede">Apresentado só no Dia 4. Sustenta o ticket de R$ 38-42k.</span>
+      <h2>O que o Império entrega no programa de 1 ano</h2>
+      <span class="lede">Apresentado só no Dia 4. Sustenta o ticket de R$ 69k.</span>
     </div>
     <div class="prog">
-      <div class="item"><h5>6 meses de programa</h5><p>Janela de transformação curta. Não é vitalício, é compromisso de execução intensiva.</p></div>
-      <div class="item"><h5>3 encontros 1:1 Patrick + Mateus</h5><p>Sessões individuais com a dupla, no kickoff, meio e fim. Pé de igualdade.</p></div>
-      <div class="item"><h5>12 encontros coletivos</h5><p>Mentoria quinzenal ao vivo. Patrick e Mateus sempre presentes. Não delegado.</p></div>
-      <div class="item"><h5>Método PREMIUM (7 pilares)</h5><p>P · R · E · M · I · U · M — base estruturada da plataforma de aulas no MemberKit.</p></div>
-      <div class="item"><h5>Mapa Mentorado individual</h5><p>Board público dark+gold com tarefas, plano e progresso. Tiago Blaya, Silvio, Leonidas e Danilo já têm o seu.</p></div>
-      <div class="item"><h5>Onboarding Tally + Notion</h5><p>60 perguntas em 9 blocos. Diagnóstico profundo antes da 1ª sessão.</p></div>
-      <div class="item"><h5>Grupo CPP no WhatsApp</h5><p>Comunidade de cirurgiões mentorados. Stephany como suporte.</p></div>
-      <div class="item"><h5>Acesso à imersão</h5><p>06-07 Ago — Grupo Acelerador, 600 cirurgiões. Mentoria Elite R$ 150k disponível pra Gaviões.</p></div>
-      <div class="item"><h5>Brindes premium</h5><p>Caixa CPP enviada no fechamento. Coerente com o ticket e com a marca dark+gold.</p></div>
-      <div class="item"><h5>Recursos reutilizáveis</h5><p>Comunicação de risco (Kahneman), playbook por perfil, formulário 60 perguntas.</p></div>
-      <div class="item"><h5>Tutoria por mentorado-líder</h5><p>Após 6 meses, Gaviões podem virar tutores (modelo Império: Meuse / Natália).</p></div>
-      <div class="item"><h5>Trilha de ascensão</h5><p>Premium R$ 38-42k → Mentoria pós R$ 60k → Elite R$ 150k → Top R$ 300k.</p></div>
+      <div class="item"><h5>Mentoria quinzenal ao vivo</h5><p>Terças, 18-23h. Juliano e Cláudio sempre presentes. Não delegado.</p></div>
+      <div class="item"><h5>Iniciação 1:1 com Juliano</h5><p>Sessão pessoal pra destruir dúvidas iniciais e entregar produto pronto.</p></div>
+      <div class="item"><h5>Área de membros gravada</h5><p>Em melhoria. Novo técnico com top alunos co-produzindo conteúdo.</p></div>
+      <div class="item"><h5>Evento presencial anual</h5><p>3-5 julho em SP, 400 pax. Tático + estratégico + emocional + mental. Sem convidados externos.</p></div>
+      <div class="item"><h5>Guardião individual</h5><p>WhatsApp dedicado, calls mensais, monitora execução, família e faturamento.</p></div>
+      <div class="item"><h5>Tutorias mensais</h5><p>Tutores ex-alunos (Meuse, Natália). Prova social escalonada e suporte de baixo custo.</p></div>
+      <div class="item"><h5>Grupos por tema</h5><p>Conteúdo, tráfego, páginas, vídeos. Revisão por especialistas (Carol, etc).</p></div>
+      <div class="item"><h5>Módulo secretária</h5><p>Inclui oficina de 8h ensinando secretárias a vender.</p></div>
+      <div class="item"><h5>Grupos por nível</h5><p>Grupo 100k- e 100k+ de faturamento. Alta Cúpula Imperial pra &gt; 250k/mês por 3 meses.</p></div>
+      <div class="item"><h5>Ritual interno</h5><p>Quem bate R$ 100k recebe placa, depoimento gravado e "passa-faixa" em ritual com a comunidade.</p></div>
+      <div class="item"><h5>Stack tecnológico</h5><p>Cloud Code, Obsidian, IA intuitiva. Vendido como noção estratégica de empresário moderno.</p></div>
+      <div class="item"><h5>Acesso à operação interna</h5><p>"Cérebro Império" com sinapses dinâmicas — narrativa de inteligência operacional embarcada.</p></div>
     </div>
   </section>
 
@@ -871,201 +976,193 @@
   <section id="funil">
     <div class="section-head">
       <span class="num">11</span>
-      <h2>Escada de comprometimento CPP</h2>
+      <h2>Escada de comprometimento</h2>
       <span class="lede">Cada CTA é maior que o anterior. Quem topou um, dá o próximo no automático.</span>
     </div>
     <div class="ladder">
       <div class="step">
-        <div class="d">Pré-desafio</div>
-        <div class="a">Inscrição R$ 97</div>
-        <div class="r">Tráfego R$ 20k → 400 inscritos. Já é micro-commitment, separa curioso.</div>
+        <div class="d">Dia 1</div>
+        <div class="a">Formulário + QR code</div>
+        <div class="r">Risco zero. Pega o lead, qualifica perfil. CTA suave, sem preço.</div>
         <div class="arrow">›</div>
       </div>
       <div class="step">
-        <div class="d">Dias 1-3</div>
-        <div class="a">Reserva de call com Vitor</div>
-        <div class="r">CTA suave nos 3 primeiros dias. Sem preço. Captura intenção.</div>
+        <div class="d">Dia 2</div>
+        <div class="a">Call 1:1 personalizada</div>
+        <div class="r">"120 primeiros, abrindo extras". Análise de Insta + perfil ao vivo.</div>
         <div class="arrow">›</div>
       </div>
       <div class="step">
         <div class="d">Dia 3</div>
-        <div class="a">Desafio comportamental</div>
-        <div class="r">Definir 1 paciente premium real da próxima semana. Buy-in antes do número.</div>
+        <div class="a">Desafio comportamental + agendar</div>
+        <div class="r">Subir consulta 50% essa semana, sem retorno grátis. Buy-in antes da venda.</div>
         <div class="arrow">›</div>
       </div>
       <div class="step">
         <div class="d">Dia 4</div>
-        <div class="a">PIX R$ 1k + Pitch R$ 38-42k</div>
-        <div class="r">Micro-commitment financeiro, depois pitch completo, escada de pagamento, call com Vitor.</div>
+        <div class="a">PIX R$ 1k + oferta R$ 69k</div>
+        <div class="r">Micro-commitment financeiro, depois pitch completo com escada de pagamento.</div>
       </div>
-    </div>
-  </section>
-
-  <!-- BIZUS -->
-  <section id="bizus">
-    <div class="section-head">
-      <span class="num">12</span>
-      <h2>Bizus replicáveis priorizados pro CPP</h2>
-      <span class="lede">Por ordem de ROI estimado, com etiqueta de aplicação imediata.</span>
-    </div>
-    <div class="bizus">
-      <div class="bizu"><span class="rank">01</span><h4>Funil de 4 micro-CTAs progressivos</h4><p>Inscrição R$ 97 → call com Vitor → desafio prático → PIX R$ 1k → 38-42k. Sem preço até o Dia 4.</p><span class="for">aplicar 100%</span></div>
-      <div class="bizu"><span class="rank">02</span><h4>Avalanche de cases no Dia 4</h4><p>Vídeos verticais 2-3 min de Tiago Blaya, Silvio, Leonidas e Danilo. Mostrar Mapa Mentorado público no telão.</p><span class="for">gravar até 30/Abr</span></div>
-      <div class="bizu"><span class="rank">03</span><h4>Dupla Patrick + Mateus em pé de igualdade</h4><p>Patrick = visceral/copy, Mateus = técnico/cirúrgico. Sem os dois polos a venda esfria. Espelha Juliano + Cláudio.</p><span class="for">já temos</span></div>
-      <div class="bizu"><span class="rank">04</span><h4>Aula 3 = Método PREMIUM (oferta). Aula 4 = pitch.</h4><p>Construir oferta antes do número final dá tempo da audiência aceitar o preço antes de ouvi-lo.</p><span class="for">aplicar</span></div>
-      <div class="bizu"><span class="rank">05</span><h4>Desafio comportamental no Dia 3</h4><p>"Defina 1 paciente premium da próxima semana." Buy-in antes da venda, gera resultado próprio.</p><span class="for">aplicar</span></div>
-      <div class="bizu"><span class="rank">06</span><h4>Escala Pato/Urubu/Gavião/Águia</h4><p>Nossa taxonomia oficial substitui os "níveis de consciência" do Império. Aplicar ao vivo no Dia 1.</p><span class="for">já temos</span></div>
-      <div class="bizu"><span class="rank">07</span><h4>Honra do Cirurgião (não Eclesiástico)</h4><p>Identidade do cirurgião como ofício técnico que salva vidas + legado familiar. Tom premium sóbrio, não evangélico.</p><span class="for">copy a desenvolver</span></div>
-      <div class="bizu"><span class="rank">08</span><h4>PIX R$ 1k de compromisso</h4><p>Filtro + ancoragem + reduz no-show. Devolve se desistir pós-call com Vitor.</p><span class="for">aplicar</span></div>
-      <div class="bizu"><span class="rank">09</span><h4>Mostrar Mapa Mentorado ao vivo</h4><p>Vantagem nossa frente ao Império: temos ativos visuais públicos. Mostra prova de método e estrutura.</p><span class="for">aplicar</span></div>
-      <div class="bizu"><span class="rank">10</span><h4>Cancelamento difícil (6 meses blindados)</h4><p>Contrato rígido filtra impulso, protege LTV.</p><span class="for">jurídico revisar</span></div>
-      <div class="bizu"><span class="rank">11</span><h4>Trilha de ascensão visível</h4><p>Premium → Pós → Elite → Top. Já temos a escada montada — apresentar ao vivo no Dia 4.</p><span class="for">já temos</span></div>
-      <div class="bizu"><span class="rank">12</span><h4>Ler nomes dos novos ao vivo</h4><p>Dia 4 fechando: ler publicamente os 20-25 que entraram. Cria a avalanche social que o Império usa.</p><span class="for">aplicar</span></div>
-    </div>
-  </section>
-
-  <!-- PLAN -->
-  <section id="plano">
-    <div class="section-head">
-      <span class="num">13</span>
-      <h2>Plano de execução até 04/Mai</h2>
-      <span class="lede">2 dias úteis pra fechar tudo. Lista priorizada.</span>
-    </div>
-    <div class="plan">
-
-      <div class="plan-item">
-        <div class="n">01</div>
-        <div class="body">
-          <h5>Gravar 4 vídeos verticais com mentorados ativos</h5>
-          <p>2-3 min cada. Tiago Blaya, Silvio Leite, Leonidas Gripp, Danilo Lopes. Roteiro: o que mudou + 1 frase de impacto + onde está agora.</p>
-          <span class="due">prazo: até 30/Abr</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">02</div>
-        <div class="body">
-          <h5>Roteiro dos 4 dias no formato Energia de Ruptura</h5>
-          <p>Patrick + Mateus em dupla, sempre. 7 blocos por aula. Bait amanhã embutido em cada encerramento.</p>
-          <span class="due">prazo: 02/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">03</div>
-        <div class="body">
-          <h5>Slides da estrutura do programa (revelado só no Dia 4)</h5>
-          <p>HTML dark+gold: 6 meses · 3 individuais · 12 coletivos · Mapa Mentorado · imersão · brindes. Apresentar ao vivo.</p>
-          <span class="due">prazo: 03/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">04</div>
-        <div class="body">
-          <h5>Scripts de objeção pra Vitor</h5>
-          <p>11 objeções da seção 08 com refutação canônica + qual mentorado citar como prova.</p>
-          <span class="due">prazo: 03/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">05</div>
-        <div class="body">
-          <h5>Mecânica do PIX R$ 1k</h5>
-          <p>Conta de recebimento + script de devolução automática + integração com agenda do Vitor + Stephany no suporte.</p>
-          <span class="due">prazo: 03/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">06</div>
-        <div class="body">
-          <h5>Página de inscrição R$ 97 com copy reformatada</h5>
-          <p>Sites <code>ludus-health-31zh.vercel.app</code> revisado pra incluir cronograma 04-07/Mai e lista de bônus.</p>
-          <span class="due">prazo: 30/Abr (já no ar refinado)</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">07</div>
-        <div class="body">
-          <h5>Tráfego — Luquita</h5>
-          <p>R$ 20k em 7-10 dias pré-desafio. Criativos com Patrick e Mateus em dupla. Públicos: cirurgião lookalike + perfil ortopedia/vascular/plástica.</p>
-          <span class="due">prazo: começar 25-27/Abr</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">08</div>
-        <div class="body">
-          <h5>Lista de cases externos consolidados</h5>
-          <p>Patrick mapeia 1-2 cirurgiões já com número bruto pra avalanche do Dia 4 (complementa os 4 mentorados em transformação).</p>
-          <span class="due">prazo: 02/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">09</div>
-        <div class="body">
-          <h5>Plataforma de transmissão e comunidade</h5>
-          <p>Definir Zoom Webinar / YouTube live + grupo de WhatsApp pré-desafio com Stephany como admin.</p>
-          <span class="due">prazo: 30/Abr</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">10</div>
-        <div class="body">
-          <h5>Roteiro de boas-vindas ao vivo no Dia 3 e 4</h5>
-          <p>Ler ao vivo os primeiros 10-15 que reservaram call com Vitor. Cria FOMO no resto. Mecânica espelhada do Império.</p>
-          <span class="due">prazo: 04/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">11</div>
-        <div class="body">
-          <h5>Contrato CPP revisto (6 meses blindados)</h5>
-          <p>Cláusula de cancelamento rígida + termos de devolução do PIX R$ 1k. Jurídico aprovar.</p>
-          <span class="due">prazo: 03/Mai</span>
-        </div>
-      </div>
-
-      <div class="plan-item">
-        <div class="n">12</div>
-        <div class="body">
-          <h5>Pós-desafio — captura dos não-fechados</h5>
-          <p>Sequência de WhatsApp + e-mail nas 72h após o Dia 4 pra reagendar com Vitor. Aproveita pico emocional.</p>
-          <span class="due">prazo: ativar 08/Mai</span>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- QUOTES -->
-  <section>
+  <section id="quotes">
     <div class="section-head">
-      <span class="num">14</span>
-      <h2>Frases-arma do Império (banco de gatilhos)</h2>
-      <span class="lede">Repetidas várias vezes. Vamos reescrever em tom CPP nos roteiros — aqui o original como referência.</span>
+      <span class="num">12</span>
+      <h2>Frases-arma do desafio</h2>
+      <span class="lede">Repetidas várias vezes. Funcionam como gatilhos verbais reusáveis.</span>
     </div>
     <div class="quotes-grid">
       <div class="qbox"><p>"Posicionamento determina 80% dos resultados. Os outros 20% são execução."</p><span>Juliano</span></div>
-      <div class="qbox"><p>"Médico que não conhece DRE é peão de luxo do empresário dono do hospital."</p><span>Cláudio &middot; reescrever pra cirurgião</span></div>
-      <div class="qbox"><p>"Não vende cura. Vende casuística. Vende resultado."</p><span>Cláudio</span></div>
+      <div class="qbox"><p>"Dinheiro é velocidade. Sucesso é decisão."</p><span>Juliano</span></div>
+      <div class="qbox"><p>"Sem comprometimento não começa. Sem consistência não triunfa."</p><span>Juliano</span></div>
+      <div class="qbox"><p>"Médico que não conhece DRE é peão de luxo do empresário dono do hospital."</p><span>Cláudio</span></div>
+      <div class="qbox"><p>"Aquilo que mais custa é o que mais vale." (Santa Teresa)</p><span>Juliano</span></div>
+      <div class="qbox"><p>"Não vende cura — isso é antiético. Vende casuística. Vende resultado."</p><span>Cláudio</span></div>
       <div class="qbox"><p>"Dor é inevitável. Sofrimento é opcional. Sacrifício é chamado."</p><span>Juliano</span></div>
       <div class="qbox"><p>"O método não falha. Quem falha é a execução."</p><span>Cláudio</span></div>
+      <div class="qbox"><p>"Não pense nas dificuldades atuais. Pense em como vencê-las. Dê o primeiro passo. É um salto de fé."</p><span>Juliano</span></div>
+      <div class="qbox"><p>"Honra o médico, porque o Senhor o criou." (Eclesiástico 38:1)</p><span>Juliano</span></div>
       <div class="qbox"><p>"Fila de espera não é status. É incompetência de gestão."</p><span>Juliano</span></div>
-      <div class="qbox"><p>"Não vende pacote de manicure. Vende plano de acompanhamento."</p><span>Cláudio &middot; aplicar pra plano cirúrgico</span></div>
+      <div class="qbox"><p>"Não vende pacote de manicure. Vende plano de acompanhamento. Plano cura, pacote termina."</p><span>Cláudio</span></div>
       <div class="qbox"><p>"Resultado cura tudo."</p><span>Cláudio</span></div>
+      <div class="qbox"><p>"Escolha seu difícil."</p><span>Juliano</span></div>
+    </div>
+  </section>
+
+  <!-- PRACTICES TO PICK -->
+  <section id="praticas">
+    <div class="section-head">
+      <span class="num">13</span>
+      <h2>Melhores práticas pra pegar</h2>
+      <span class="lede">Conclusão do estudo: o que vamos roubar pra nosso desafio.</span>
+    </div>
+    <div class="practice">
+
+      <div class="pr">
+        <div class="n">1</div>
+        <h4>Funil de 4 micro-CTAs progressivos</h4>
+        <p>Formulário → call 1:1 → desafio prático → PIX 1k → oferta. <b>Não vender nada nos 3 primeiros dias.</b> Cada CTA é maior que o anterior.</p>
+        <div class="why"><b>Por quê</b>: 70% do tempo é construção de desejo. Se mostrar preço cedo, perde. Quem topou o anterior dá o próximo quase no automático.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">2</div>
+        <h4>Dupla apresentadora com papéis distintos</h4>
+        <p>Juliano = visceral, espiritual, narrativa pessoal. Cláudio = analítico, matemático, empresarial. Sem os dois polos a venda esfria. Ler como modelo direto pra Patrick + Mateus.</p>
+        <div class="why"><b>Por quê</b>: público compra pelo coração e justifica pela cabeça. Os dois são necessários e tem que ser visíveis e diferentes.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">3</div>
+        <h4>Avalanche de cases nominais com número</h4>
+        <p>Sempre nome + especialidade + cidade + número absoluto. Nunca anedota. Dia 4 abre com 40 minutos só de cases.</p>
+        <div class="why"><b>Por quê</b>: prova de padrão repetível, não exceção. A audiência não tem como dizer "não funciona" depois disso.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">4</div>
+        <h4>Aula de oferta antes do pitch</h4>
+        <p>Dia 3 inteiro é dedicado a <b>construir oferta</b>. Dia 4 é onde o número aparece. Separar a construção da oferta da venda em si dá tempo da audiência aceitar o preço antes de ouvi-lo.</p>
+        <div class="why"><b>Por quê</b>: 80% do resultado tá na etapa 5 do framework deles. Quanto mais rica a percepção de valor antes do número, menor a fricção do pitch.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">5</div>
+        <h4>Desafio comportamental no Dia 3</h4>
+        <p>"Sobe consulta 50% essa semana, sem retorno grátis." Buy-in <b>antes</b> da venda. Quem age sente resultado e vira sangrento defensor. Quem não age, sente vergonha e compra.</p>
+        <div class="why"><b>Por quê</b>: ação precede convicção. Quem pôs a mão na massa não recua quando ouve o número.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">6</div>
+        <h4>Ler nomes de novos membros ao vivo</h4>
+        <p>Dia 3 abre com 24 nomes lidos publicamente. Dia 4 fecha com 160+. Pressupõe pré-venda nos primeiros dias. Cria FOMO no resto.</p>
+        <div class="why"><b>Por quê</b>: prova social ao vivo + escassez ao vivo no mesmo segundo. Mostra que tem gente decidindo já.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">7</div>
+        <h4>Exercício financeiro de papel e caneta</h4>
+        <p>Dia 1, minuto 00:43. Aplica dor visceral em tempo real. <em>"Quanto tem na conta? Em quanto tempo quebra?"</em>. Funciona <b>antes</b> de qualquer venda.</p>
+        <div class="why"><b>Por quê</b>: a audiência precisa sentir o problema antes de querer a solução. Não é o palestrante que diz que ele tem problema — é ele mesmo.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">8</div>
+        <h4>Identidade sagrada antes do preço</h4>
+        <p>Eclesiástico 38 + Davi/Golias + Sagrada Família. Resgata identidade do médico. Resolve a culpa de cobrar caro.</p>
+        <div class="why"><b>Por quê</b>: ticket alto mexe com identidade. Médico cristão (maioria do mercado BR) só paga R$ 60k+ se for por propósito, não por playbook. <em>Adaptar pro CPP com narrativa de honra do cirurgião — sem o tom evangélico, mais sóbrio.</em></div>
+      </div>
+
+      <div class="pr">
+        <div class="n">9</div>
+        <h4>PIX R$ 1k de comprometimento</h4>
+        <p>Micro-commitment antes da venda total. Filtra curioso, reduz no-show das calls, gera ancoragem pro número final, devolve se desistir pós-call.</p>
+        <div class="why"><b>Por quê</b>: é o detalhe que separa um desafio de R$ 200k de um de R$ 1M. Quem deu R$ 1k aceita R$ 38k mais fácil.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">10</div>
+        <h4>Sequência "sem desculpas" antes de fechar</h4>
+        <p>Lista cada objeção comum (RQE, Instagram, dinheiro, idade, especialidade, cidade, tempo, "já tentei") e refuta com case nominal. Não argumenta — cita.</p>
+        <div class="why"><b>Por quê</b>: tira a objeção da audiência antes que ela vire desculpa. Cada objeção tem um nome próprio que a derruba.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">11</div>
+        <h4>Tier por idade ou perfil na oferta</h4>
+        <p>Tier &gt; 70 anos com R$ 48k vs R$ 69k padrão. Resolve objeção mais comum ao vivo, sinaliza inclusão e estende mercado.</p>
+        <div class="why"><b>Por quê</b>: objeção morre quando a oferta já vem com a saída embutida. <em>Pode replicar pra outro corte (ex: cirurgião sem RQE pleno, residente final, etc).</em></div>
+      </div>
+
+      <div class="pr">
+        <div class="n">12</div>
+        <h4>Cancelamento difícil + contrato rígido</h4>
+        <p>Comunicado como "risco do empreendedor". Foco em comprometidos. Devolve só o PIX antes da call.</p>
+        <div class="why"><b>Por quê</b>: filtra impulso, protege LTV, sinaliza seriedade do programa. Quem entra, entra pra entregar.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">13</div>
+        <h4>Vender ecossistema, não curso</h4>
+        <p>Estrutura completa só apresentada no Dia 4. Mentoria quinzenal + guardião individual + evento presencial + tutores ex-alunos + grupos por nível. <b>Não é informação, é suporte.</b></p>
+        <div class="why"><b>Por quê</b>: ticket alto exige produto vitalício. Curso vende por R$ 1-3k. Ecossistema vende por R$ 30-70k+.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">14</div>
+        <h4>Tutores ex-alunos como prova social escalonada</h4>
+        <p>Meuse e Natália são tutores. Foram alunos, viraram apoiadores. Aparecem nos depoimentos e no programa.</p>
+        <div class="why"><b>Por quê</b>: cliente vê <em>"daqui a 1 ano eu posso estar do outro lado"</em>. Suporte de baixo custo + prova de que o método cria comunidade ativa.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">15</div>
+        <h4>Ritual interno (passa-faixa nos R$ 100k)</h4>
+        <p>Quem bate R$ 100k/mês recebe placa, grava depoimento e passa faixa em ritual da comunidade.</p>
+        <div class="why"><b>Por quê</b>: gamifica o resultado e gera testemunho viral organicamente. O depoimento já fica gravado, pronto pro próximo desafio.</div>
+      </div>
+
+      <div class="pr">
+        <div class="n">16</div>
+        <h4>Bait diário pro próximo dia</h4>
+        <p>Cada aula encerra anunciando o quê e quem vem amanhã (<em>"20h Cláudio com Canva", "8h vendas com Juliano"</em>). Ancora audiência pra retornar.</p>
+        <div class="why"><b>Por quê</b>: 4 dias só funciona se a audiência <b>volta</b>. Bait reduz drop-off e mantém o ritual.</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="ico">★</div>
+      <p><strong>Síntese pra estudar com Mateus:</strong> os 3 pilares do desafio do Império são <strong>(1) dupla com papéis distintos visíveis</strong>, <strong>(2) escada de comprometimento de 4 micro-CTAs progressivos sem mostrar preço até o Dia 4</strong>, e <strong>(3) cases nominais com número como combustível</strong>. Tudo o resto é técnica em cima desses três alicerces. Antes de copiar técnica, garantir que esses três pilares estão de pé.</p>
     </div>
   </section>
 
   <footer>
-    <span>CPP &middot; Análise interna &middot; Patrick Suyti + Dr. Mateus Jeronimo</span>
-    <span>Versão CPP &middot; 02 / Maio / 2026</span>
+    <span>Material de estudo &middot; Patrick + Mateus</span>
+    <span>Resumo do desafio Império Médico &middot; 02 / Maio / 2026</span>
   </footer>
 
 </div>
